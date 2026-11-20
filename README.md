@@ -1,49 +1,40 @@
-# Starlight Starter Kit: Basics
+# edgefetch.dev
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Source for [edgefetch.dev](https://edgefetch.dev), the documentation site for
+[EdgeFetch](https://github.com/bartrumb/edgefetch), a self-hosted web scraping and search MCP
+server for AI agents.
 
-```
-npm create astro@latest -- --template starlight
-```
+Built with [Astro Starlight](https://starlight.astro.build) and served as static assets from a
+Cloudflare Worker.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Run it locally
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+```bash
+npm install
+npm run dev        # http://localhost:4321
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## Deploy
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+```bash
+npm run deploy     # astro build && wrangler deploy
+```
 
-Static assets, like favicons, can be placed in the `public/` directory.
+`wrangler.jsonc` attaches the Worker `edgefetch-site` to `edgefetch.dev` and `www.edgefetch.dev`.
 
-## 🧞 Commands
+## Where things live
 
-All commands are run from the root of the project, from a terminal:
+| Path | What it is |
+|---|---|
+| `src/content/docs/` | Every docs page, in Markdown or MDX |
+| `src/components/Hero.astro`, `Home.astro` | The custom homepage |
+| `src/styles/theme.css` | Brand colours and fonts for Starlight |
+| `src/assets/` | Logo artwork |
+| `public/` | Favicon, social card, `robots.txt`, `llms.txt`, `.well-known/` |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Contributing
 
-## 👀 Want to learn more?
+Fixes to the docs are welcome. Open a pull request against `main`. For changes to EdgeFetch
+itself, use the [main repository](https://github.com/bartrumb/edgefetch).
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+Content is MIT licensed, like the project.

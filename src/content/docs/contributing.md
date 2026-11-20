@@ -1,0 +1,70 @@
+---
+title: Contributing
+description: How to help with EdgeFetch, the rules every pull request keeps, and the commands to run before you open one.
+---
+
+EdgeFetch is MIT licensed, and issues and pull requests are triaged weekly. The full guide is
+[CONTRIBUTING.md](https://github.com/bartrumb/edgefetch/blob/main/CONTRIBUTING.md), and everyone
+follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CODE_OF_CONDUCT.md).
+
+## Where help matters most
+
+- **Adapters.** A new site, job board or open-data portal is one file and one fixture. Start
+  with [Write an adapter](/adapters/write/).
+- **False-positive fixtures.** If EdgeFetch flagged a normal page as a bot challenge, or missed a
+  real one, an HTML sample makes the classifier better for everyone
+  (`internal/classify/waf_test.go` and `hub/src/waf.ts`).
+- **Hardware reports.** Tell us EdgeFetch runs on your router, NAS, Raspberry Pi, FreeBSD box or
+  Mac, so a platform can move from "build verified" to "live tested".
+- **Docs.** This site lives in [bartrumb/edgefetch-site](https://github.com/bartrumb/edgefetch-site).
+  Every page has its source there.
+
+## Rules every pull request keeps
+
+1. **Politeness can't get weaker.** No change may loosen robots.txt handling, `Retry-After` and
+   `Crawl-delay`, or the dial-time IP checks.
+2. **No ways around site defences.** No CAPTCHA solvers, stealth plugins, fingerprint spoofing or
+   rotating residential proxies.
+3. **The supply chain stays small.** The Go module keeps exactly one external dependency, and
+   the hub keeps zero npm runtime dependencies. CI checks both.
+4. **Built-in adapters stay keyless.** Paid services belong in operator settings, not in the
+   adapter library.
+5. **Tests come with changes.** Every fix or adapter includes a fixture or a unit test.
+6. **Release files stay out of PRs.** Leave `.github/workflows/release.yml` and `keys/` alone
+   unless the maintainer asks.
+
+AI-assisted pull requests are welcome if you've read every line yourself, checked robots.txt on
+the live site, and run the tests below.
+
+By opening a pull request you confirm you can license your work under the MIT licence.
+
+## Check your work locally
+
+Go worker, CLI and Go hub (Go 1.26 or later):
+
+```bash
+gofmt -s -w .
+go vet ./...
+go test -race ./...
+```
+
+TypeScript hub (Node.js 22.5 or later):
+
+```bash
+cd hub
+npm ci
+npm run type-check
+npm test
+npm run deploy:dry
+```
+
+Extraction benchmark:
+
+```bash
+node bench/run-bench.mjs
+```
+
+## Security issues
+
+Please don't open a public issue. Report privately through
+[GitHub Security Advisories](https://github.com/bartrumb/edgefetch/security/advisories/new).

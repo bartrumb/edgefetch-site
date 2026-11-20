@@ -42,12 +42,26 @@ export default defineConfig({
                   ],
               },
               {
-                  label: 'Guides',
+                  label: 'Deploy',
                   items: [
+                      { label: 'One-click deploys', slug: 'deploy/one-click' },
                       { label: 'Deploy a hub', slug: 'guides/deploy-hub' },
                       { label: 'Add worker nodes', slug: 'guides/workers' },
+                      { label: 'Roll your own', slug: 'deploy/roll-your-own' },
+                  ],
+              },
+              {
+                  label: 'Guides',
+                  items: [
                       { label: 'Verify a release', slug: 'guides/verify-release' },
                       { label: 'Troubleshooting & OTel traces', slug: 'guides/troubleshooting' },
+                  ],
+              },
+              {
+                  label: 'Adapters',
+                  items: [
+                      { label: 'Site adapters', slug: 'adapters' },
+                      { label: 'Write an adapter', slug: 'adapters/write' },
                   ],
               },
               {
@@ -68,6 +82,8 @@ export default defineConfig({
               {
                   label: 'Project',
                   items: [
+                      { label: 'Contributing', slug: 'contributing' },
+                      { label: 'Registries and bot lists', slug: 'registries' },
                       { label: 'For website owners', slug: 'site-owners' },
                       { label: 'Status and contact', slug: 'project' },
                   ],
