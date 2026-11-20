@@ -19,6 +19,15 @@ arm64 board). Expect fast changes. Issues and pull requests are triaged weekly.
 - [Read the contributing guide](https://github.com/bartrumb/edgefetch/blob/main/CONTRIBUTING.md)
 - [Report a vulnerability privately](https://github.com/bartrumb/edgefetch/security/advisories/new)
 
+## Support the project
+
+EdgeFetch is free and stays free. If it saves you a scraping bill, you can help keep it going:
+
+- **[Sponsor on GitHub](https://github.com/sponsors/bartrumb)**: monthly or one-time, from $5.
+  Sponsorship pays for real test hardware, adapter upkeep and time to answer issues.
+- **[Get the raven merch](https://edgefetch-shop.fourthwall.com)**: the robots.txt tee, the raven
+  mug and laptop stickers. Every order helps fund the project.
+
 ## Contact
 
 [bot@edgefetch.dev](mailto:bot@edgefetch.dev) for anything about the software or the bot.
