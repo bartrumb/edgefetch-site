@@ -1,0 +1,17 @@
+{
+  // Static docs site for edgefetch.dev (Astro Starlight build output in ./dist).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "edgefetch-site",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "edgefetch.dev", "custom_domain": true },
+    { "pattern": "www.edgefetch.dev", "custom_domain": true }
+  ],
+  "workers_dev": false,
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,86 @@
+/* EdgeFetch brand theme for Starlight.
+   Palette from the crow logo: night navy, cyan rim light, amber feather accents. */
+
+:root {
+	--ef-night: #101c2c;
+	--ef-ink: #172a40;
+	--ef-cyan: #3fc6e0;
+	--ef-cyan-deep: #0f7f97;
+	--ef-amber: #f2a93b;
+	--ef-paper: #f6f8fb;
+	--ef-fog: #8a9bb0;
+
+	--sl-font: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
+	--sl-font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+	--sl-text-h1: 2.5rem;
+	--sl-line-height-headings: 1.15;
+
+	/* Dark (default) */
+	--sl-color-accent-low: #0d3644;
+	--sl-color-accent: #2fb4cf;
+	--sl-color-accent-high: #a8ecf8;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e6edf5;
+	--sl-color-gray-2: #c3cfdc;
+	--sl-color-gray-3: #8a9bb0;
+	--sl-color-gray-4: #556780;
+	--sl-color-gray-5: #2a3c54;
+	--sl-color-gray-6: #172a40;
+	--sl-color-black: #101c2c;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d3f2f8;
+	--sl-color-accent: #0f7f97;
+	--sl-color-accent-high: #0a4f5f;
+	--sl-color-white: #101c2c;
+	--sl-color-gray-1: #172a40;
+	--sl-color-gray-2: #2a3c54;
+	--sl-color-gray-3: #4a5d75;
+	--sl-color-gray-4: #7d8ea3;
+	--sl-color-gray-5: #c5d0dc;
+	--sl-color-gray-6: #e6ecf2;
+	--sl-color-gray-7: #f1f4f8;
+	--sl-color-black: #ffffff;
+}
+
+/* On the homepage the header joins the dark hero band in both themes */
+:root[data-has-hero] .header {
+	background-color: #101c2c;
+	border-bottom-color: #1c2f44;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e6edf5;
+	--sl-color-gray-2: #c3cfdc;
+	--sl-color-gray-5: #2a3c54;
+	--sl-color-gray-6: #172a40;
+	--sl-color-black: #101c2c;
+	--sl-color-text-accent: #a8ecf8;
+}
+:root[data-has-hero] .header .site-title {
+	color: #ffffff;
+}
+
+/* Header brand */
+.site-title img {
+	border-radius: 7px;
+	box-shadow: 0 0 0 1px #2a4560;
+}
+.site-title {
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.015em;
+}
+
+.sl-markdown-content code:not(:where(.not-content *)) {
+	font-size: 0.875em;
+}
+
+:focus-visible {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}

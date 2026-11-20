@@ -1,0 +1,26 @@
+# EdgeFetch
+
+> Self-hosted web scraping, search, and browser interaction for AI agents using outbound-only Go workers and Cloudflare Hibernating WebSocket Durable Objects. Zero open ports, strict RFC 9309 robots.txt compliance, MIT licensed.
+
+## Getting Started
+
+- [Home](https://edgefetch.dev/): Overview of EdgeFetch architecture, politeness model, and local/Docker quick-start commands.
+- [Quick start](https://edgefetch.dev/start/quick-start/): Start a local stdio MCP server or run the full Docker hub on `127.0.0.1:8787`.
+- [Install](https://edgefetch.dev/start/install/): Install via `go install`, signed GitHub Release archives, GHCR containers, or Home Assistant OS add-on.
+- [Connect an MCP client](https://edgefetch.dev/start/mcp-clients/): Configure Claude Code, Claude Desktop, Cursor, or OAuth 2.1 HTTP MCP clients.
+
+## Concepts
+
+- [How it works](https://edgefetch.dev/concepts/architecture/): Outbound WebSocket Durable Object hub, Go HTTP/2 + Headless Chromium + Poppler PDF workers, D1 FTS5, and R2 artifacts.
+- [Politeness & robots.txt](https://edgefetch.dev/concepts/politeness/): RFC 9309 robots.txt on every redirect hop, per-host pacing, Retry-After cooldowns, and immediate halt on anti-bot challenges.
+- [Security model](https://edgefetch.dev/concepts/security/): Dual-layer dial-time SSRF protection, loopback CONNECT proxy for Chromium, root privilege drop to UID 65532, and Ed25519 + SLSA release verification.
+
+## Guides & Reference
+
+- [Deploy a hub](https://edgefetch.dev/guides/deploy-hub/): Deploy on Cloudflare Workers, Docker, Fly.io, Render, Railway, or bare-metal Go hub mode.
+- [Add worker nodes](https://edgefetch.dev/guides/workers/): Run outbound worker nodes on Home Assistant OS, Proxmox LXC, Docker, Kubernetes, or Android Termux.
+- [Verify a release](https://edgefetch.dev/guides/verify-release/): Verify Ed25519 checksum signatures and GitHub SLSA build provenance attestations.
+- [Troubleshooting & OpenTelemetry traces](https://edgefetch.dev/guides/troubleshooting/): Capture sanitized diagnostic bundles (`edgefetch bug-report`) and export W3C `traceparent` OTLP/HTTP JSON traces.
+- [MCP tools reference](https://edgefetch.dev/reference/tools/): Complete reference for `scrape`, `crawl`, `map`, `search`, `extract`, `interact`, `fetch_url`, `fetch_batch`, and `read_artifact`.
+- [For website owners](https://edgefetch.dev/site-owners/): User-Agent (`EdgeFetch/2.5 (bot@edgefetch.dev)`), RFC 9421 Web Bot Auth signatures, robots.txt opt-out, and abuse contact.
+- [Project & governance](https://edgefetch.dev/project/): MIT license, security reporting, changelog, and repository governance.
