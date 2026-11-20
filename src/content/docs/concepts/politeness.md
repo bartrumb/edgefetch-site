@@ -6,13 +6,24 @@ description: The rules EdgeFetch always follows when it fetches a page.
 EdgeFetch fetches pages only when a user or agent asks it to. It is not a web-wide crawler, and it
 isn't used to train AI models. These rules are always on: they aren't settings you can turn off.
 
-## robots.txt
+## robots.txt and Content Signals
 
 - `robots.txt` is checked following RFC 9309 (`Allow`, `Disallow`, `*` and `$` wildcards,
   `Crawl-delay`) before the first request **and again on every redirect hop**.
+- **Content Signals:** EdgeFetch parses `Content-Signal` lines (`search`, `ai-input`, `ai-train`) in
+  the matching `User-agent` group. When `ai-input=no` is set, EdgeFetch treats the page as
+  disallowed and returns `blocked: { reason: "content-signal" }`. EdgeFetch never trains models.
 - The product token is `EdgeFetch`, matched case-insensitively. The `User-agent: *` group applies
   if there's no EdgeFetch-specific group.
-- `robots.txt` blocks are never handed to a fallback service.
+- `robots.txt` and `Content-Signal` blocks are never handed to a fallback service.
+
+## Markdown negotiation and HTTP 402
+
+- **Markdown for Agents:** Page scrapes negotiate `Accept: text/markdown, text/html;q=0.9, */*;q=0.8`
+  first, saving bandwidth on origins that serve Markdown natively (`contentSource: "origin-markdown"`).
+- **HTTP 402 / x402:** When a site answers with `402 Payment Required` (including `x402` payment
+  headers or JSON terms), EdgeFetch classifies the response as `outcome: "payment_required"`,
+  reports the price and terms to the calling agent, and **never pays automatically**.
 
 ## Rate limits
 

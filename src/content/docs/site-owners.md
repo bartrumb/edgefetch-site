@@ -13,8 +13,11 @@ models. Because anyone can run it, traffic comes from many operators, not from o
 
 ## What it always does
 
-- Reads and obeys your `robots.txt`, including on every redirect.
+- Asks for `Accept: text/markdown` first so sites using Cloudflare Markdown for Agents can serve
+  lightweight Markdown instead of full HTML.
+- Reads and obeys your `robots.txt` and `Content-Signal: ai-input=no` directives, including on every redirect.
 - Honours `Retry-After` on `429` and `503` responses, and limits how fast it hits each host.
+- Treats `402 Payment Required` (`x402`) as a price quote reported back to the user, never an error to retry.
 - Stops when it sees a CAPTCHA or bot challenge. It doesn't try to get past it.
 
 See [Politeness rules](/concepts/politeness/) for the details.
