@@ -23,14 +23,19 @@ follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CO
 
 1. **Politeness can't get weaker.** No change may loosen robots.txt handling, `Retry-After` and
    `Crawl-delay`, or the dial-time IP checks.
-2. **No ways around site defences.** No CAPTCHA solvers, stealth plugins, fingerprint spoofing or
-   rotating residential proxies.
-3. **The supply chain stays small.** The Go module keeps exactly one external dependency, and
+2. **No ways around site defences (permanently out of scope).** Anti-bot fingerprinting, TLS/HTTP2
+   fingerprint spoofing, stealth browser patches, CAPTCHA solvers, and rotating residential proxies
+   are permanently out of scope.
+3. **Every outbound call has a deadline.** Every network fetch carries a timeout and cancels or
+   drains unread bodies; contributed adapters run inside a zero-secret, zero-network bulkhead.
+4. **DCO sign-off & contributor vouching.** Sign commits with `git commit -s`; first-time external
+   PRs are gated by `.github/VOUCHED.td` before untrusted workflows run.
+5. **The supply chain stays small.** The Go module keeps exactly one external dependency, and
    the hub keeps zero npm runtime dependencies. CI checks both.
-4. **Built-in adapters stay keyless.** Paid services belong in operator settings, not in the
+6. **Built-in adapters stay keyless.** Paid services belong in operator settings, not in the
    adapter library.
-5. **Tests come with changes.** Every fix or adapter includes a fixture or a unit test.
-6. **Release files stay out of PRs.** Leave `.github/workflows/release.yml` and `keys/` alone
+7. **Tests come with changes.** Every fix or adapter includes a fixture or a unit test.
+8. **Release files stay out of PRs.** Leave `.github/workflows/release.yml` and `keys/` alone
    unless the maintainer asks.
 
 AI-assisted pull requests are welcome if you've read every line yourself, checked robots.txt on

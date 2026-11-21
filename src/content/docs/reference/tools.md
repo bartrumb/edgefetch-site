@@ -3,7 +3,7 @@ title: MCP tools
 description: The tools EdgeFetch exposes to MCP clients.
 ---
 
-A hub exposes these 14 tools. Some, such as `search_collection` and `agent`, need hub storage or an LLM key you configure.
+A hub exposes these 15 tools. Some, such as `search_collection` and `agent`, need hub storage or an LLM key you configure.
 
 | Tool | What it does |
 |---|---|
@@ -15,7 +15,8 @@ A hub exposes these 14 tools. Some, such as `search_collection` and `agent`, nee
 | `extract` | Pull structured fields from a page into JSON |
 | `search` | Web search through your own Serper, Brave or Tavily keys, or SearXNG for $0 |
 | `search_collection` | Full-text search over pages you've already collected |
-| `jobs` | Search ATS job boards and return postings with normalised pay ranges |
+| `jobs` | Search ATS job boards or `verify` saved job links with normalised pay ranges |
+| `catalog` | Pull a store's full product & variant inventory (Shopify & WooCommerce) politely with snapshot diffs |
 | `interact` | Drive a page in the browser (click, type, scroll) and return what it shows |
 | `read_artifact` | Read a stored large result (PDF text, crawl output) in chunks |
 | `find_extractors` | Show which site adapter would handle a URL |

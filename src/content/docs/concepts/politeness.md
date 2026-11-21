@@ -6,15 +6,24 @@ description: The rules EdgeFetch always follows when it fetches a page.
 EdgeFetch fetches pages only when a user or agent asks it to. It is not a web-wide crawler, and it
 isn't used to train AI models. These rules are always on: they aren't settings you can turn off.
 
-## robots.txt and Content Signals
+## robots.txt and Content Signals (100% RFC 9309)
 
-- `robots.txt` is checked following RFC 9309 (`Allow`, `Disallow`, `*` and `$` wildcards,
-  `Crawl-delay`) before the first request **and again on every redirect hop**.
+- `robots.txt` is checked following **RFC 9309** (`1 MiB` parse cap, UTF-8 BOM handling, `Allow` and
+  `Disallow`, `*` and `$` wildcards, §2.2.1 group combining, §2.2.2 percent-encoding normalization,
+  §2.3.1.2 5-redirect handling, §2.4 `Cache-Control: max-age` up to 24h, and `Crawl-delay`) before
+  the first request **and again on every redirect hop**.
+- Temporary `/robots.txt` network timeouts or `5xx` errors are cached for 60 seconds and reported as
+  `blocked: { reason: "robots_unreachable" }` (per RFC 9309 §2.3.1.4), distinct from explicit path
+  `Disallow` rules (`reason: "robots"`).
 - **Content Signals:** EdgeFetch parses `Content-Signal` lines (`search`, `ai-input`, `ai-train`) in
-  the matching `User-agent` group. When `ai-input=no` is set, EdgeFetch treats the page as
-  disallowed and returns `blocked: { reason: "content-signal" }`. EdgeFetch never trains models.
-- The product token is `EdgeFetch`, matched case-insensitively. The `User-agent: *` group applies
-  if there's no EdgeFetch-specific group.
+  the matching `User-agent` group (inheriting global/`*` signals when a specific group omits them).
+  When `ai-input=no` is set, EdgeFetch treats the page as disallowed and returns
+  `blocked: { reason: "content-signal" }`. EdgeFetch never trains models.
+- **Owner-Explicit Partner / Self-Owned Bypass (`ROBOTS_BYPASS_HOSTS`):** `respectRobots: true` is
+  locked on by default (`400 robots_required` if set to `false`). Operators crawling domains they
+  own or hold written partner authorization for can allowlist specific domain suffixes in both
+  `ROBOTS_BYPASS_HOSTS` (on the Hub) and `EDGEFETCH_ROBOTS_BYPASS_HOSTS` / `robots_bypass_hosts`
+  (on worker nodes); every bypass call is logged in `hub_events`.
 - `robots.txt` and `Content-Signal` blocks are never handed to a fallback service.
 
 ## Markdown negotiation and HTTP 402
@@ -25,10 +34,13 @@ isn't used to train AI models. These rules are always on: they aren't settings y
   headers or JSON terms), EdgeFetch classifies the response as `outcome: "payment_required"`,
   reports the price and terms to the calling agent, and **never pays automatically**.
 
-## Rate limits
+## Rate limits ("3 strikes and you're out")
 
-- `429` and `503` responses with `Retry-After` put that host into a cooldown.
-- Each host has its own concurrency limit and pacing, across the whole fleet.
+- On HTTP `429` (when not an anti-bot challenge), EdgeFetch performs **up to 3 adaptive attempts**,
+  honouring the origin's `Retry-After` header (or exponential `4s` → `10s` backoff with jitter when
+  `Retry-After` is absent) within the call's remaining deadline before returning `rate_limited` and
+  placing that host/IP into a fleet cooldown.
+- Each host has its own concurrency limit and pacing (`>= 2s` on store catalogs), across the whole fleet.
 
 ## Challenges and CAPTCHAs
 
