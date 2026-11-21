@@ -37,4 +37,4 @@ npm run deploy     # astro build && wrangler deploy
 Fixes to the docs are welcome. Open a pull request against `main`. For changes to EdgeFetch
 itself, use the [main repository](https://github.com/bartrumb/edgefetch).
 
-Content is MIT licensed, like the project.
+Documentation content in this repository is MIT licensed. EdgeFetch itself uses an open-source worker, SDKs, and adapters (`MIT`) with a fair-source hub (`FSL-1.1`, `MIT` after two years).

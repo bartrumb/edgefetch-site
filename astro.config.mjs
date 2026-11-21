@@ -12,7 +12,7 @@ export default defineConfig({
       starlight({
           title: 'EdgeFetch',
           description:
-              'Self-hosted, MIT-licensed web scraping and search MCP server for AI agents. One Go binary, zero open ports.',
+              'Self-hosted web scraping and search MCP server for AI agents. One Go binary, zero open ports — open-source worker and adapters (MIT), fair-source hub (FSL-1.1).',
           social: [{ icon: 'github', label: 'GitHub', href: repo }],
           logo: { src: './src/assets/edgefetch-raven-mark.png', alt: 'EdgeFetch' },
           favicon: '/favicon.png',

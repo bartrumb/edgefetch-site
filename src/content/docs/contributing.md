@@ -3,7 +3,7 @@ title: Contributing
 description: How to help with EdgeFetch, the rules every pull request keeps, and the commands to run before you open one.
 ---
 
-EdgeFetch is MIT licensed, and issues and pull requests are triaged weekly. The full guide is
+EdgeFetch combines an **open-source worker, SDKs, and site adapters ([MIT](https://github.com/bartrumb/edgefetch/blob/main/LICENSE))** with a **fair-source hub ([FSL-1.1-MIT](https://github.com/bartrumb/edgefetch/blob/main/hub/LICENSE), MIT after two years)**. Issues and pull requests are triaged weekly. The full guide is
 [CONTRIBUTING.md](https://github.com/bartrumb/edgefetch/blob/main/CONTRIBUTING.md), and everyone
 follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CODE_OF_CONDUCT.md).
 
@@ -30,9 +30,9 @@ follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CO
    drains unread bodies; contributed adapters run inside a zero-secret, zero-network bulkhead.
 4. **DCO sign-off & contributor vouching.** Sign commits with `git commit -s`; first-time external
    PRs are gated by `.github/VOUCHED.td` before untrusted workflows run.
-5. **The supply chain stays small.** The Go module keeps exactly one external dependency, and
-   the hub keeps zero npm runtime dependencies. CI checks both.
-6. **Built-in adapters stay keyless.** Paid services belong in operator settings, not in the
+5. **The supply chain stays small.** The Go module keeps strictly one external dependency (`coder/websocket`), and
+   the hub keeps runtime dependencies restricted strictly to small, maintainer-vetted packages (`re2js`, `htmlparser2`, `ws`, `yaml`).
+6. **Built-in adapters stay keyless (`MIT`).** All built-in adapters (`internal/extract/manifests/` and `hub/src/extractors/`) are MIT-licensed; paid services belong in operator settings, not in the
    adapter library.
 7. **Tests come with changes.** Every fix or adapter includes a fixture or a unit test.
 8. **Release files stay out of PRs.** Leave `.github/workflows/release.yml` and `keys/` alone
@@ -41,7 +41,7 @@ follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CO
 AI-assisted pull requests are welcome if you've read every line yourself, checked robots.txt on
 the live site, and run the tests below.
 
-By opening a pull request you confirm you can license your work under the MIT licence.
+**Inbound = MIT + DCO (`git commit -s`):** By opening a pull request (whether to the `MIT` worker, SDKs, and adapters or to the `FSL-1.1-MIT` hub), you confirm you have the right to license and do license your contribution inbound under the [MIT License](https://github.com/bartrumb/edgefetch/blob/main/LICENSE) alongside your DCO sign-off. No separate CLA is required.
 
 ## Check your work locally
 

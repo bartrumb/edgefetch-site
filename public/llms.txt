@@ -1,6 +1,6 @@
 # EdgeFetch
 
-> Self-hosted web scraping, search, and browser interaction for AI agents using outbound-only Go workers and Cloudflare Hibernating WebSocket Durable Objects. Zero open ports, strict RFC 9309 robots.txt compliance, MIT licensed.
+> Self-hosted web scraping, search, and browser interaction for AI agents using outbound-only Go workers and Cloudflare Hibernating WebSocket Durable Objects. Zero open ports, strict RFC 9309 robots.txt compliance — open-source worker, SDKs, and adapters (MIT); fair-source hub (FSL-1.1, MIT after two years).
 
 ## Getting Started
 
@@ -23,4 +23,4 @@
 - [Troubleshooting & OpenTelemetry traces](https://edgefetch.dev/guides/troubleshooting/): Capture sanitized diagnostic bundles (`edgefetch bug-report`) and export W3C `traceparent` OTLP/HTTP JSON traces.
 - [MCP tools reference](https://edgefetch.dev/reference/tools/): Complete reference for `scrape`, `crawl`, `map`, `search`, `extract`, `jobs`, `catalog`, `interact`, `fetch_url`, `fetch_batch`, and `read_artifact`.
 - [For website owners](https://edgefetch.dev/site-owners/): User-Agent (`EdgeFetch/2.6 (bot@edgefetch.dev)`), RFC 9421 Web Bot Auth Ed25519 signatures, Content-Signal (`ai-input=no`), robots.txt opt-out, and abuse contact.
-- [Project & governance](https://edgefetch.dev/project/): MIT license, security reporting, changelog, and repository governance.
+- [Project & governance](https://edgefetch.dev/project/): Licensing (MIT worker & adapters, FSL-1.1 fair-source hub), trademarks, security reporting, changelog, and repository governance.

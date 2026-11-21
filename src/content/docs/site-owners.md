@@ -7,9 +7,9 @@ If you saw `EdgeFetch` in your logs, here's what it is.
 
 ## What it is
 
-EdgeFetch is open-source software that people run themselves to let their AI assistant read a web
+EdgeFetch is self-hosted software (**open-source MIT worker and adapters**, **fair-source FSL-1.1 hub**) that people run themselves to let their AI assistant read a web
 page **when they ask it to**. It is not a search-engine crawler, and it isn't used to train AI
-models. Because anyone can run it, traffic comes from many operators, not from one company.
+models. Because anyone can self-host it, traffic comes from many operators, not from one company.
 
 ## What it always does
 
