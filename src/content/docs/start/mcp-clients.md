@@ -44,7 +44,7 @@ by default. Allow other hosts with `OAUTH_REDIRECT_ALLOWLIST`.
 The worker image can also run the `stdio` server:
 
 ```bash
-docker run -i --rm ghcr.io/bartrumb/edgefetch-agent:2.5.5 mcp
+docker run -i --rm ghcr.io/bartrumb/edgefetch-agent:2.6.0 mcp
 ```
 
 See the [tools reference](/reference/tools/) for what your agent can call.

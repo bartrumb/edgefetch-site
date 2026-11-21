@@ -83,7 +83,7 @@ SEC EDGAR, OpenAlex, Crossref and NCBI give better service to clients that ident
 Put a real contact in your user agent:
 
 ```bash
-EDGEFETCH_USER_AGENT="EdgeFetch/2.5 (mailto:you@yourdomain.com)"
+EDGEFETCH_USER_AGENT="EdgeFetch/2.6 (mailto:you@yourdomain.com)"
 ```
 
 The full maintainer notes are in
