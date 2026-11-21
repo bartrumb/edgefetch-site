@@ -25,7 +25,7 @@ EdgeFetch is free and stays free. If it saves you a scraping bill, you can help 
 
 - **[Sponsor on GitHub](https://github.com/sponsors/bartrumb)**: monthly or one-time, from $5.
   Sponsorship pays for real test hardware, adapter upkeep and time to answer issues.
-- **[Get the raven merch](https://edgefetch-shop.fourthwall.com)**: the robots.txt tee, the raven
+- **[Get the raven merch](https://merch.edgefetch.dev)**: the robots.txt tee, the raven
   mug and laptop stickers. Every order helps fund the project.
 
 ## Contact

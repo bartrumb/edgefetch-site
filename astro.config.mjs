@@ -87,7 +87,7 @@ export default defineConfig({
                       { label: 'For website owners', slug: 'site-owners' },
                       { label: 'Status and contact', slug: 'project' },
                       { label: 'Sponsor on GitHub', link: 'https://github.com/sponsors/bartrumb', attrs: { target: '_blank', rel: 'noopener' } },
-                      { label: 'Raven merch shop', link: 'https://edgefetch-shop.fourthwall.com', attrs: { target: '_blank', rel: 'noopener' } },
+                      { label: 'Raven merch shop', link: 'https://merch.edgefetch.dev', attrs: { target: '_blank', rel: 'noopener' } },
                   ],
               },
           ],
