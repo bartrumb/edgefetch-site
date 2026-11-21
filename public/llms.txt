@@ -22,5 +22,6 @@
 - [Verify a release](https://edgefetch.dev/guides/verify-release/): Verify Ed25519 checksum signatures and GitHub SLSA build provenance attestations.
 - [Troubleshooting & OpenTelemetry traces](https://edgefetch.dev/guides/troubleshooting/): Capture sanitized diagnostic bundles (`edgefetch bug-report`) and export W3C `traceparent` OTLP/HTTP JSON traces.
 - [MCP tools reference](https://edgefetch.dev/reference/tools/): Complete reference for `scrape`, `crawl`, `map`, `search`, `extract`, `jobs`, `catalog`, `interact`, `fetch_url`, `fetch_batch`, and `read_artifact`.
+- [REST API & OpenAPI 3.1](https://edgefetch.dev/reference/http-api/): Full HTTP endpoint reference and OpenAPI 3.1.0 specification (https://edgefetch.dev/openapi.json).
 - [For website owners](https://edgefetch.dev/site-owners/): User-Agent (`EdgeFetch/2.6 (bot@edgefetch.dev)`), RFC 9421 Web Bot Auth Ed25519 signatures, Content-Signal (`ai-input=no`), robots.txt opt-out, and abuse contact.
 - [Project & governance](https://edgefetch.dev/project/): Licensing (MIT worker & adapters, FSL-1.1 fair-source hub), trademarks, security reporting, changelog, and repository governance.

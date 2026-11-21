@@ -76,6 +76,7 @@ export default defineConfig({
                   label: 'Reference',
                   items: [
                       { label: 'MCP tools', slug: 'reference/tools' },
+                      { label: 'REST API & OpenAPI 3.1', slug: 'reference/http-api' },
                       { label: 'Docs on GitHub', slug: 'reference/github-docs' },
                   ],
               },
