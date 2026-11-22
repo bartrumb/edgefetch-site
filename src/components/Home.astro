@@ -114,9 +114,24 @@ gh attestation verify edgefetch_&lt;version&gt;_linux_amd64.tar.gz \
 </div>
 
 <style>
+	/* The homepage stays on the night band in both themes, so the scroll story flows straight
+	   into these sections instead of cutting to white. */
 	.ef-home {
 		max-width: 72rem;
 		margin-inline: auto;
+		margin-top: 0 !important;
+		background: #101c2c;
+		box-shadow: 0 0 0 100vmax #101c2c;
+		clip-path: inset(-6rem -100vmax -100vmax);
+		--sl-color-white: #ffffff;
+		--sl-color-gray-1: #e6edf5;
+		--sl-color-gray-2: #c3cfdc;
+		--sl-color-gray-3: #8a9bb0;
+		--sl-color-gray-4: #556780;
+		--sl-color-gray-5: #22384f;
+		--sl-color-gray-6: #172a40;
+		--sl-color-accent: #3fc6e0;
+		color: #c3cfdc;
 	}
 	.ef-section {
 		padding-block: clamp(2.5rem, 6vw, 4.5rem);

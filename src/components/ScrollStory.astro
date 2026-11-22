@@ -274,38 +274,85 @@ const htmlLines = [
 		}
 
 		const draw = [door, dialOut, dialCheck, markdown];
-		let ticking = false;
-
-		function render() {
-			ticking = false;
-			const r = story!.getBoundingClientRect();
-			const pin = story!.querySelector<HTMLElement>('.ef-story__pin')!;
-			const travel = Math.max(1, story!.offsetHeight - pin.offsetHeight);
-			const p = clamp(-r.top / travel);
-			const n = groups.length;
-			const pos = Math.min(n - 0.0001, p * n);
-			const ch = Math.floor(pos);
-			const local = reduce.matches ? 1 : pos - ch;
-			story!.dataset.ch = String(ch);
-			story!.style.setProperty('--p', String(p));
-			groups.forEach((g, i) => {
-				// cross-fade between chapters at the boundaries
-				const vis = i === ch ? 1 : 0;
-				g.style.opacity = String(vis);
-				g.style.transform = `translateY(${(i - ch) * 14}px)`;
-			});
-			draw[ch](local);
-		}
-		const onScroll = () => {
-			if (!ticking) {
-				ticking = true;
-				requestAnimationFrame(render);
-			}
+		const texts = [...story.querySelectorAll<HTMLElement>('.ef-story__text')];
+		const pin = story.querySelector<HTMLElement>('.ef-story__pin')!;
+		const stage = story.querySelector<SVGSVGElement>('.ef-story__stage')!;
+		const smooth = (a: number, b: number, x: number) => {
+			const k = clamp((x - a) / (b - a));
+			return k * k * (3 - 2 * k);
 		};
-		addEventListener('scroll', onScroll, { passive: true });
-		addEventListener('resize', onScroll);
-		reduce.addEventListener?.('change', onScroll);
-		render();
+
+		// Scroll sets a target; the drawn progress eases toward it every frame. That easing is what
+		// makes wheel steps and trackpad flicks glide instead of jump.
+		let target = 0;
+		let current = 0;
+		let enterTarget = 0;
+		let enter = 0;
+		let raf = 0;
+
+		function measure() {
+			const r = story!.getBoundingClientRect();
+			const travel = Math.max(1, story!.offsetHeight - pin.offsetHeight);
+			target = clamp(-r.top / travel);
+			// 0 while the band is still below the fold, 1 once it reaches the pin position
+			enterTarget = clamp(1 - r.top / (innerHeight * 0.9));
+		}
+
+		function paint(p: number, e: number) {
+			const n = groups.length;
+			const pos = p * n; // 0..4
+			story!.style.setProperty('--p', p.toFixed(4));
+			story!.dataset.ch = String(Math.min(n - 1, Math.floor(pos)));
+
+			// entrance: the stage settles into place as the band arrives
+			const ee = ease(e);
+			stage.style.opacity = String(0.25 + 0.75 * ee);
+			stage.style.transform = `translateY(${(1 - ee) * 40}px) scale(${0.94 + 0.06 * ee})`;
+
+			for (let i = 0; i < n; i++) {
+				const d = pos - (i + 0.5); // distance from this chapter's centre, in chapters
+				let v = 1 - smooth(0.32, 0.5, Math.abs(d));
+				if (i === 0 && d < 0) v = 1;
+				if (i === n - 1 && d > 0) v = 1;
+				const drift = Math.max(-0.5, Math.min(0.5, d));
+				const g = groups[i];
+				g.style.opacity = v.toFixed(3);
+				g.style.transform = `translateY(${(-drift * 36).toFixed(2)}px) scale(${(0.96 + 0.04 * v).toFixed(4)})`;
+				const tx = texts[i];
+				tx.style.opacity = v.toFixed(3);
+				tx.style.transform = `translateY(${(-drift * 28).toFixed(2)}px)`;
+				tx.style.pointerEvents = v > 0.5 ? 'auto' : 'none';
+				if (v > 0.001) {
+					// each chapter finishes its animation at 85% and holds while the next fades in
+					const local = reduce.matches ? 1 : clamp((pos - i) / 0.85);
+					draw[i](local);
+				}
+			}
+		}
+
+		function frame() {
+			const k = reduce.matches ? 1 : 0.12;
+			current += (target - current) * k;
+			enter += (enterTarget - enter) * (reduce.matches ? 1 : 0.1);
+			const settled = Math.abs(target - current) < 0.0004 && Math.abs(enterTarget - enter) < 0.001;
+			if (settled) {
+				current = target;
+				enter = enterTarget;
+			}
+			paint(current, enter);
+			raf = settled ? 0 : requestAnimationFrame(frame);
+		}
+		const kick = () => {
+			measure();
+			if (!raf) raf = requestAnimationFrame(frame);
+		};
+		addEventListener('scroll', kick, { passive: true });
+		addEventListener('resize', kick);
+		reduce.addEventListener?.('change', kick);
+		measure();
+		current = target;
+		enter = enterTarget;
+		paint(current, enter);
 	}
 </script>
 
@@ -371,20 +418,14 @@ const htmlLines = [
 	.ef-story__texts {
 		display: grid;
 	}
+	/* opacity and drift are driven every frame from the smoothed scroll progress */
 	.ef-story__text {
 		grid-area: 1 / 1;
 		opacity: 0;
-		transform: translateY(12px);
-		transition: opacity 0.45s ease, transform 0.45s ease;
-		pointer-events: none;
+		will-change: opacity, transform;
 	}
-	.ef-story[data-ch='0'] .ef-story__text[data-i='0'],
-	.ef-story[data-ch='1'] .ef-story__text[data-i='1'],
-	.ef-story[data-ch='2'] .ef-story__text[data-i='2'],
-	.ef-story[data-ch='3'] .ef-story__text[data-i='3'] {
+	.ef-story__text[data-i='0'] {
 		opacity: 1;
-		transform: none;
-		pointer-events: auto;
 	}
 	.ef-story__text h2 {
 		margin: 0;
@@ -411,7 +452,13 @@ const htmlLines = [
 		overflow: visible;
 	}
 	.ef-c {
-		transition: opacity 0.45s ease, transform 0.45s ease;
+		transform-box: view-box;
+		transform-origin: 50% 50%;
+		will-change: opacity, transform;
+	}
+	.ef-story__stage {
+		transform-origin: 50% 60%;
+		will-change: opacity, transform;
 	}
 	.ef-story text {
 		text-anchor: middle;
@@ -566,12 +613,6 @@ const htmlLines = [
 		}
 		.ef-story__text p {
 			font-size: 1rem;
-		}
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.ef-story__text,
-		.ef-c {
-			transition: none;
 		}
 	}
 </style>
