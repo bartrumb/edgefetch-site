@@ -105,7 +105,7 @@ If you run your own fleet, set a User-Agent that identifies **you**, so site own
 operator:
 
 ```bash
-EDGEFETCH_USER_AGENT="EdgeFetch/2.6 (+https://your-site.example/bot)"
+EDGEFETCH_USER_AGENT="EdgeFetch/2.7 (+https://your-site.example/bot)"
 ```
 
 The platform matrix in the [README](https://github.com/bartrumb/edgefetch#readme) marks which

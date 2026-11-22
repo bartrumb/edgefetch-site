@@ -39,8 +39,10 @@ All of these are off until you configure them:
 
 | Feature | What to set |
 |---|---|
+| Encrypted MCP Registry vault (`/admin`) | `VAULT_MASTER_KEY` (`>= 24` random chars, e.g. `openssl rand -hex 32`) |
+| Multi-user Sign in with GitHub | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_OWNER_LOGIN`, and `GITHUB_ALLOWED_USERS="alice,@my-org"` (`SIGNUP_MODE=invite_only` default) |
 | Web search | `SERPER_API_KEY`, `BRAVE_API_KEY` or `TAVILY_API_KEY`, or `SEARXNG_URL` for a free self-hosted option |
-| Stored artifacts and crawl history | The `ARTIFACTS` R2 bucket and `META` D1 database in `hub/wrangler.toml` |
+| Stored artifacts and crawl history | The `ARTIFACTS` R2 bucket and `META` D1 database in `hub/wrangler.toml` (`0001_tracking.sql` + `0002_multiuser.sql`) |
 | Full-text search over what you've collected | The `SEARCH` D1 database |
 | Signed requests (Web Bot Auth) | `BOT_SIGNING_PRIVATE_KEY`, from `edgefetch keygen-bot-auth` |
 | Tracing | `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_EXPORTER_OTLP_HEADERS` |

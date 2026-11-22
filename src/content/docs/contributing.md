@@ -9,7 +9,7 @@ follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CO
 
 ## Where help matters most
 
-- **Adapters.** A new site, job board or open-data portal is one file and one fixture. Start
+- **Adapters.** A new site, job board or open-data portal is one declarative YAML manifest and one JSON fixture. Start
   with [Write an adapter](/adapters/write/).
 - **False-positive fixtures.** If EdgeFetch flagged a normal page as a bot challenge, or missed a
   real one, an HTML sample makes the classifier better for everyone
@@ -31,7 +31,7 @@ follows the [Code of Conduct](https://github.com/bartrumb/edgefetch/blob/main/CO
 4. **DCO sign-off & contributor vouching.** Sign commits with `git commit -s`; first-time external
    PRs are gated by `.github/VOUCHED.td` before untrusted workflows run.
 5. **The supply chain stays small.** The Go module keeps strictly one external dependency (`coder/websocket`), and
-   the hub keeps runtime dependencies restricted strictly to small, maintainer-vetted packages (`re2js`, `htmlparser2`, `ws`, `yaml`).
+   the hub keeps runtime dependencies restricted strictly to small, maintainer-vetted packages (`htmlparser2`, `jose`, `oauth4webapi`, `re2js`, `ws`, `yaml`).
 6. **Built-in adapters stay keyless (`MIT`).** All built-in adapters (`internal/extract/manifests/` and `hub/src/extractors/`) are MIT-licensed; paid services belong in operator settings, not in the
    adapter library.
 7. **Tests come with changes.** Every fix or adapter includes a fixture or a unit test.

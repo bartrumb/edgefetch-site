@@ -35,16 +35,16 @@ claude mcp add edgefetch -- edgefetch mcp
 
 ## Remote hub over HTTP
 
-A deployed hub serves MCP at `https://<your-hub>/mcp`, using OAuth 2.1 with PKCE or a bearer
-token. Point your client at that URL. Dynamic client registration accepts loopback redirect URIs
-by default. Allow other hosts with `OAUTH_REDIRECT_ALLOWLIST`.
+A deployed hub serves MCP at `https://<your-hub>/mcp`, using OAuth 2.1 with `S256` PKCE (supporting both **Sign in with GitHub** for multi-user hubs and `CALLER_TOKEN`) or a bearer token. Point your client at that URL. Dynamic client registration accepts loopback redirect URIs by default; allow additional hosts with `OAUTH_REDIRECT_ALLOWLIST`.
+
+From `/admin` on your hub, each signed-in user can also connect external MCP servers from the Official MCP Registry or Glama into their encrypted `AES-256-GCM` vault and call them through `discover_mcps`, `query_mcp`, `/v1/scrape` (Tier-1 MCP-First routing), and `/v1/agent`.
 
 ## Container
 
 The worker image can also run the `stdio` server:
 
 ```bash
-docker run -i --rm ghcr.io/bartrumb/edgefetch-agent:2.6.0 mcp
+docker run -i --rm ghcr.io/bartrumb/edgefetch-agent:2.7.0 mcp
 ```
 
 See the [tools reference](/reference/tools/) for what your agent can call.

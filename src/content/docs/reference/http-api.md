@@ -19,10 +19,10 @@ curl -sS https://edgefetch.dev/openapi.json | jq '{openapi, version: .info.versi
 Protected `/v1/*`, `/v2/*`, `/fetch`, `/agents`, and `/mcp` endpoints accept either a Bearer token or a self-hosted OAuth 2.1 access token:
 
 1. **Bearer / API Token (`bearerAuth`):** Pass `Authorization: Bearer <token>` (or `X-API-Key: <token>`) using your Hub `CALLER_TOKEN` or scoped `MCP_TOKEN`.
-2. **OAuth 2.1 + PKCE (`oauth2Pkce`):** Self-hosted Authorization Code flow with mandatory `S256` PKCE and RFC 7591 Dynamic Client Registration:
+2. **OAuth 2.1 + PKCE & GitHub Sign-In (`oauth2Pkce`):** Self-hosted Authorization Code flow with mandatory `S256` PKCE, RFC 7591 Dynamic Client Registration, and optional multi-user **Sign in with GitHub** (`GET /auth/github/login`, `SIGNUP_MODE=invite_only` default):
    - Protected Resource Metadata (RFC 9728): `GET /.well-known/oauth-protected-resource`
    - Authorization Server Metadata (RFC 8414): `GET /.well-known/oauth-authorization-server`
-   - Scopes: `crawl:read` (capabilities, extractors, host telemetry, stored artifacts, search) and `crawl:fetch` (outbound scraping, crawling, mapping, browser interaction, jobs, catalog, and autonomous agent runs).
+   - Scopes: `crawl:read` (capabilities, extractors, MCP registry search, host telemetry, stored artifacts, search) and `crawl:fetch` (outbound scraping, crawling, mapping, browser interaction, jobs, catalog, federated `query_mcp`, and autonomous agent runs).
 
 ## Endpoint reference
 
@@ -36,8 +36,11 @@ Protected `/v1/*`, `/v2/*`, `/fetch`, `/agents`, and `/mcp` endpoints accept eit
 | `GET /.well-known/http-message-signatures-directory` | Public | RFC 9421 Web Bot Auth Ed25519 JWKS directory |
 | `GET /.well-known/oauth-protected-resource` | Public | RFC 9728 OAuth 2.1 Protected Resource metadata |
 | `GET /.well-known/oauth-authorization-server` | Public | RFC 8414 OAuth 2.1 Authorization Server metadata |
-| `GET /v1/capabilities` | `crawl:read` | Configured R2, D1, FTS5, SERP, OCR, and BYO-LLM bindings |
-| `GET /v1/extractors` | `crawl:read` | List 49+ built-in keyless site & API adapters (`?category=...`) |
+| `GET /auth/github/login` | Public (interactive) | Start GitHub OAuth 2.1 PKCE login for `/admin` or `/oauth/authorize` |
+| `GET /auth/github/callback` | Public (interactive) | Complete GitHub OAuth callback (`SIGNUP_MODE=invite_only` / `@org` gated) |
+| `GET /v1/capabilities` | `crawl:read` | Configured R2, D1, FTS5, SERP, OCR, MCP vault, and BYO-LLM bindings |
+| `GET /v1/extractors` | `crawl:read` | List all 56 built-in declarative YAML site & API adapters (`?category=...`) |
+| `GET /v1/mcp/registry` | `crawl:read` | Search Official MCP Registry + Glama (`?q=...&source=all&limit=20`) |
 | `GET /v1/hosts` | `crawl:read` | Per-host EWMA TTFB, polite pause windows, and `429` health |
 | `GET /v1/artifacts/{blobSha256}` | `crawl:read` | Stream or page stored R2 raw/Markdown artifacts (`?offset=&limit=`) |
 | `GET /agents` | `CALLER_TOKEN` | Connected outbound Go worker nodes (`LITE` vs `FAT`, arch, counters) |
@@ -69,6 +72,7 @@ Protected `/v1/*`, `/v2/*`, `/fetch`, `/agents`, and `/mcp` endpoints accept eit
 | `GET /v1/agent/{agentId}` | `crawl:read` | Poll async autonomous agent run status and output |
 | `DELETE /v1/agent/{agentId}` | `crawl:fetch` | Cancel a running autonomous agent task |
 | `GET /v1/agent/{agentId}/trace` | `crawl:read` | Fetch ordered execution trace spans for an agent run |
+| `POST /v1/mcp/query` | `crawl:fetch` | List or call tools on a downstream MCP server connected in the caller's `/admin` vault |
 | `POST /fetch` | `CALLER_TOKEN` | Low-level multi-URL coordinator dispatch across worker shards |
 | `POST /mcp` | `crawl:read` / `crawl:fetch` | Stateless Streamable HTTP MCP JSON-RPC endpoint |
 

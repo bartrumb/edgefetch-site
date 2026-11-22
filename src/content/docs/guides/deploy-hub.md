@@ -22,15 +22,20 @@ Pick one place to run it. For the click-and-go versions, see [One-click deploys]
 git clone https://github.com/bartrumb/edgefetch.git
 cd edgefetch/hub
 npm ci
-npx wrangler secret put CALLER_TOKEN
-npx wrangler secret put AGENT_TOKEN
+npx wrangler secret put CALLER_TOKEN       # >= 24 random chars (owner/CI API token)
+npx wrangler secret put AGENT_TOKEN        # >= 24 random chars (outbound worker secret)
+npx wrangler secret put VAULT_MASTER_KEY   # >= 24 random chars (AES-256-GCM MCP vault key)
 npm run deploy
 ```
 
 The Durable Object hibernates between requests, and idle worker pings are answered by
 Cloudflare's auto-response without waking it, so a quiet hub costs nothing. R2 (artifacts) and
-two D1 databases (crawl metadata and full-text search) are optional bindings in
-`hub/wrangler.toml`. Native Workers logs and traces are switched on in the same file.
+two D1 databases (`META` for crawl metadata, multi-user accounts & agent runs via `hub/migrations/meta/*.sql`, and `SEARCH` for FTS5 full-text search) are optional bindings in
+`hub/wrangler.toml`.
+
+To enable multi-user **Sign in with GitHub** on `/admin` and `/oauth/authorize` (`SIGNUP_MODE=invite_only` by default), set `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_OWNER_LOGIN`, and `GITHUB_ALLOWED_USERS="alice,@your-org"`. Headless `CALLER_TOKEN` bearer auth continues to work alongside GitHub OAuth.
+
+Forks can also enable automated Ed25519-verified upstream release syncing (`.github/workflows/upstream-sync.yml` with repository variable `ENABLE_UPSTREAM_AUTO_SYNC=true`) and automatic tag deploys (`.github/workflows/deploy-hub.yml`).
 
 ## All-in-one container
 

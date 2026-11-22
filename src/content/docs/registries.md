@@ -1,9 +1,9 @@
 ---
 title: Registries and bot lists
-description: Where EdgeFetch is being listed as an MCP server and a known, polite bot, what's done, and how operators register their own fleets.
+description: Where EdgeFetch is listed as an MCP server and a known, polite bot, what's live today, and how operators register their own fleets.
 ---
 
-EdgeFetch is being registered in two kinds of places. MCP directories let people find and install
+EdgeFetch is registered in two kinds of places. MCP directories let people find and install
 it. Bot directories let website owners recognise it as a polite fetcher acting for a person, not
 a crawler collecting AI training data.
 
@@ -21,12 +21,12 @@ would end up revoked for everyone.
 
 ## Status
 
-This page is kept current. Nothing is listed until the table says so.
+This page is kept current. Nothing is marked live until the listing is active.
 
 | Directory | Kind | Status |
 |---|---|---|
-| [Official MCP Registry](https://registry.modelcontextprotocol.io) | MCP | Being prepared. `server.json` names the server `io.github.bartrumb/edgefetch` and pins a versioned container image |
-| [Glama](https://glama.ai/mcp/servers) | MCP | Being prepared. `glama.json` lists the maintainer |
+| [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=edgefetch) | MCP | **Live (`active`, `v2.7.0`)** as `io.github.bartrumb/edgefetch`, published automatically via GitHub OIDC on every signed release |
+| [Glama](https://glama.ai/mcp/servers) | MCP | `glama.json` published in repository; searchable directly inside `/admin` and `discover_mcps` |
 | [PulseMCP](https://www.pulsemcp.com) and [mcp.so](https://mcp.so) | MCP | Planned |
 | [Known Agents](https://knownagents.com) | Bot directory | Planned, as a user-triggered fetcher that does not train models |
 | [Cloudflare Verified Bots](https://radar.cloudflare.com/bots) | Bot directory | Per operator, using Web Bot Auth. See below |
@@ -83,7 +83,7 @@ SEC EDGAR, OpenAlex, Crossref and NCBI give better service to clients that ident
 Put a real contact in your user agent:
 
 ```bash
-EDGEFETCH_USER_AGENT="EdgeFetch/2.6 (mailto:you@yourdomain.com)"
+EDGEFETCH_USER_AGENT="EdgeFetch/2.7 (mailto:you@yourdomain.com)"
 ```
 
 The full maintainer notes are in

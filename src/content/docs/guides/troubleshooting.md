@@ -41,3 +41,13 @@ OTEL_EXPORTER_OTLP_ENDPOINT="https://otel.example.com"
 OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer%20<your-ingest-token>"
 OTEL_SERVICE_NAME="edgefetch"
 ```
+
+## Opt-in structural error telemetry (default OFF)
+
+Unattended EdgeFetch installs send **zero** telemetry (`EDGEFETCH_DEV_TELEMETRY` defaults to `off` across the Go binary, containers, Home Assistant OS add-on, and Hub).
+
+If you want to help catch broken site adapters and new WAF regressions, hub owners can opt in from `/admin` (or during interactive `edgefetch init`, or via `EDGEFETCH_DEV_TELEMETRY=1`). When enabled:
+
+- Only failed (`ERROR`) or WAF/adapter-failure spans are reported, scrubbed to **11 fixed structural fields**: `schemaVersion`, `version`, `runtime`, `os`, `arch`, `mode`, `spanName`, `adapterId`, `wafVendor`, `httpStatus`, and `errorClass`.
+- **Zero** URLs, hostnames, paths, query strings, page content, stack messages, or tokens are ever transmitted.
+- Setting `DO_NOT_TRACK=1` acts as an unconditional hard override that disables error telemetry even if opted in elsewhere.

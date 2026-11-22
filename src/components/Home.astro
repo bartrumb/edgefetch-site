@@ -153,32 +153,60 @@ const refusals = [
 		<p class="ef-more"><a href="/concepts/architecture/">How the hub and workers fit together</a></p>
 	</section>
 
+	<section class="ef-section ef-section--split" aria-labelledby="ef-fed-title">
+		<div class="ef-section__head">
+			<h2 id="ef-fed-title">Federate MCP servers before scraping HTML</h2>
+			<p>
+				Sign in to <code>/admin</code> with GitHub OAuth (invite-only by default), search the
+				Official MCP Registry and Glama, and connect downstream MCP servers over OAuth 2.1 PKCE
+				or write-only secret headers. When a domain matches a connected MCP server, EdgeFetch
+				queries it first and keeps private results isolated per user.
+			</p>
+			<p><a href="/reference/tools/">Explore all 17 MCP tools</a></p>
+		</div>
+		<dl class="ef-rules">
+			<div>
+				<dt>Per-user AES-256-GCM credential vault</dt>
+				<dd>Derived with WebCrypto HKDF-SHA256 and origin-bound AAD so stored tokens never leave the hub and never cross user or host boundaries.</dd>
+			</div>
+			<div>
+				<dt>56 declarative YAML site adapters</dt>
+				<dd>Public registries, ATS job boards, research APIs and storefronts compile to one checked IR with zero executable adapter code.</dd>
+			</div>
+			<div>
+				<dt>Multi-user GitHub OAuth + headless API tokens</dt>
+				<dd>Invite teammates or allow a GitHub org while keeping <code>CALLER_TOKEN</code> working unchanged for CLI scripts and CI.</dd>
+			</div>
+		</dl>
+	</section>
+
 	<section class="ef-section ef-section--split" aria-labelledby="ef-verify-title">
 		<div class="ef-section__head">
-			<h2 id="ef-verify-title">Check the release yourself</h2>
+			<h2 id="ef-verify-title">Check or update the release yourself</h2>
 			<p>
 				Every release ships SHA-256 checksums signed with Ed25519 and GitHub SLSA build
-				provenance for each archive and container image. CI runs <code>go vet</code>,
-				<code>staticcheck</code>, <code>govulncheck</code>, the race detector and fuzz tests on
-				every push. The Go worker has one external dependency.
+				provenance for each archive and container image. <code>edgefetch update</code> verifies
+				the Ed25519 signature in pure Go before replacing the binary. The Go worker keeps
+				strictly one external dependency.
 			</p>
 			<p><a href="/guides/verify-release/">Verify a release step by step</a></p>
 		</div>
-		<pre class="ef-code"><code><span class="c"># signature over the checksums</span>
+		<pre class="ef-code"><code><span class="c"># built-in Ed25519 + SHA-256 verified self-update</span>
+edgefetch update
+
+<span class="c"># or verify manually with OpenSSL + GitHub SLSA provenance</span>
 openssl pkeyutl -verify -pubin -inkey release-signing-pub.pem \
   -rawin -in checksums.txt -sigfile checksums.txt.sig
-
-<span class="c"># provenance from the GitHub Actions build</span>
-gh attestation verify edgefetch_&lt;version&gt;_linux_amd64.tar.gz \
+gh attestation verify edgefetch_2.7.0_linux_amd64.tar.gz \
   --repo bartrumb/edgefetch</code></pre>
 	</section>
 
 	<section class="ef-start" aria-labelledby="ef-start-title">
 		<h2 id="ef-start-title">Pick where to start</h2>
 		<ul>
-			<li><a href="/start/mcp-clients/"><strong>Use it from your editor</strong><span>Run it locally over stdio for Claude Code, Claude Desktop or Cursor.</span></a></li>
-			<li><a href="/deploy/one-click/"><strong>Run a hub</strong><span>One-click deploys to Cloudflare, Render, Railway, Deno or Home Assistant.</span></a></li>
-			<li><a href="/adapters/"><strong>Browse the adapters</strong><span>Job boards, package registries and open data, with no API keys.</span></a></li>
+			<li><a href="/start/mcp-clients/"><strong>Use it from your editor</strong><span>Run locally over stdio or connect to a multi-user OAuth 2.1 hub from Claude Code, Claude Desktop or Cursor.</span></a></li>
+			<li><a href="/deploy/one-click/"><strong>Run a federated hub</strong><span>One-click deploys to Cloudflare, Render, Railway, Deno or Home Assistant with built-in MCP Registry search.</span></a></li>
+			<li><a href="/adapters/"><strong>Browse 56 YAML adapters</strong><span>Job boards, package registries, storefronts and open data, with zero API keys.</span></a></li>
 			<li><a href="/site-owners/"><strong>Saw us in your logs?</strong><span>What EdgeFetch is, and how to block or contact it.</span></a></li>
 		</ul>
 	</section>

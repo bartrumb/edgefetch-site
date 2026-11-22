@@ -1,6 +1,7 @@
 {
   "name": "EdgeFetch",
-  "userAgent": "EdgeFetch/2.6 (bot@edgefetch.dev)",
+  "version": "2.7.0",
+  "userAgent": "EdgeFetch/2.7 (bot@edgefetch.dev)",
   "category": "user-triggered-agent-retrieval",
   "robotsTxt": "strict-rfc9309",
   "contentSignals": "honored (ai-input)",

@@ -1,6 +1,6 @@
 ---
 title: Install
-description: Release binaries, go install, container images and the Home Assistant add-on.
+description: Release binaries, built-in self-updater, go install, container images and the Home Assistant add-on.
 ---
 
 ## Release binaries
@@ -18,13 +18,23 @@ Each [GitHub release](https://github.com/bartrumb/edgefetch/releases/latest) shi
 Every release includes `checksums.txt`, an Ed25519 signature over it, and SLSA build
 provenance. See [Verify a release](/guides/verify-release/).
 
+Once installed, upgrade in place at any time with Ed25519 + SHA-256 verification:
+
+```bash
+edgefetch update
+```
+
 ## go install
 
-Requires Go 1.26 or later. Note the `/v2` in the module path:
+Requires Go 1.24 or later. Note the `/v2` in the module path:
 
 ```bash
 go install github.com/bartrumb/edgefetch/v2/cmd/edgefetch@latest
 ```
+
+## Official MCP Registry
+
+EdgeFetch is published on the [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=edgefetch) as **`io.github.bartrumb/edgefetch`**.
 
 ## Container images
 
@@ -33,11 +43,11 @@ without logging in.
 
 | Image | What it is |
 |---|---|
-| `ghcr.io/bartrumb/edgefetch-agent:latest` | "Fat" worker: HTTP/2, headless Chromium, Poppler PDF |
-| `ghcr.io/bartrumb/edgefetch-agent:lite` | Distroless worker, about 15 MB of RAM, pure-Go PDF |
-| `ghcr.io/bartrumb/edgefetch:latest` | All-in-one hub + worker + SQLite FTS5 |
+| `ghcr.io/bartrumb/edgefetch-agent:2.7.0` | "Fat" worker: HTTP/2, headless Chromium, Poppler PDF |
+| `ghcr.io/bartrumb/edgefetch-agent:2.7.0-lite` | Distroless worker, about 15 MB of RAM, pure-Go PDF |
+| `ghcr.io/bartrumb/edgefetch:2.7.0` | All-in-one federated hub + worker + SQLite FTS5 |
 
-Pin a version tag such as `2.5.2` in production instead of `latest`.
+Pin an explicit version tag such as `2.7.0` in production instead of `latest`.
 
 ## Home Assistant OS
 
@@ -51,5 +61,4 @@ Add the repository with the button in the
 edgefetch doctor
 ```
 
-`doctor` checks the SSRF guard, the loopback proxy used by the browser, browser detection and PDF
-tools, and prints what it found.
+`doctor` checks the dial-time SSRF guard, Direct Pipe CDP browser startup, and PDF tools, and prints what it found.
