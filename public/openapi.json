@@ -4,7 +4,7 @@
   "info": {
     "title": "EdgeFetch Hub API",
     "summary": "Self-hosted web scraping, search, browser automation, and MCP coordinator for AI agents.",
-    "version": "2.7.0",
+    "version": "2.7.1",
     "description": "EdgeFetch Hub coordinates polite outbound-only Go worker nodes (HTTP/2, Headless Chromium, Poppler PDF/OCR, and 49+ keyless site adapters) with strict RFC 9309 robots.txt and Content-Signal compliance, D1 FTS5 hybrid search, R2 content-addressed artifacts, self-hosted OAuth 2.1 PKCE, and Streamable HTTP Model Context Protocol (`POST /mcp`).",
     "contact": {
       "name": "EdgeFetch",
@@ -168,7 +168,7 @@
         ],
         "operationId": "getOAuthProtectedResource",
         "summary": "Get RFC 9728 OAuth 2.1 Protected Resource metadata",
-        "description": "Advertises protected MCP resource URI, authorization server issuer, and supported scopes (`crawl:read`, `crawl:fetch`).",
+        "description": "Advertises protected MCP resource URI, authorization server issuer, and supported scopes (`crawl:read`, `crawl:fetch`, `mcp:call`).",
         "security": [],
         "responses": {
           "200": {
@@ -342,7 +342,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -432,7 +432,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -516,7 +516,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -666,7 +666,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -756,7 +756,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -846,7 +846,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -925,7 +925,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1012,7 +1012,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1102,7 +1102,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1182,7 +1182,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1262,7 +1262,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1342,7 +1342,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1432,7 +1432,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1533,7 +1533,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1620,7 +1620,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1710,7 +1710,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1819,7 +1819,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1907,7 +1907,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1987,7 +1987,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2067,7 +2067,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2157,7 +2157,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2237,7 +2237,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2383,7 +2383,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2488,7 +2488,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2568,7 +2568,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2655,7 +2655,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2745,7 +2745,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2867,7 +2867,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2886,14 +2886,15 @@
         ],
         "operationId": "queryConnectedMcp",
         "summary": "List or invoke tools on a user-connected federated MCP server",
-        "description": "Executes `list_connected`, `list_tools`, or `call_tool` over Streamable HTTP / SSE against a user-isolated `AES-256-GCM` vault connector, auto-refreshing OAuth 2.1 tokens and scrubbing indirect prompt injections (`visibility: \"private\"`).",
+        "description": "Executes `list_connected`, `list_tools`, or `call_tool` over Streamable HTTP / SSE against a user-isolated `AES-256-GCM` vault connector, auto-refreshing OAuth 2.1 tokens and scrubbing indirect prompt injections (`visibility: \"private\"`). Requires OAuth scope `mcp:call` (or `CALLER_TOKEN` / `MCP_TOKEN`) when `action` is `\"call_tool\"`.",
         "security": [
           {
             "bearerAuth": []
           },
           {
             "oauth2Pkce": [
-              "crawl:fetch"
+              "crawl:read",
+              "mcp:call"
             ]
           }
         ],
@@ -2947,7 +2948,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3012,7 +3013,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3135,7 +3136,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3162,7 +3163,8 @@
           {
             "oauth2Pkce": [
               "crawl:read",
-              "crawl:fetch"
+              "crawl:fetch",
+              "mcp:call"
             ]
           }
         ],
@@ -3219,7 +3221,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3299,7 +3301,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3379,7 +3381,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3459,7 +3461,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3539,7 +3541,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3619,7 +3621,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3709,7 +3711,7 @@
             }
           },
           "403": {
-            "description": "Insufficient OAuth 2.1 scope (`crawl:read` or `crawl:fetch`) or policy block.",
+            "description": "Insufficient OAuth 2.1 scope (`crawl:read`, `crawl:fetch`, or `mcp:call`) or policy block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3739,7 +3741,8 @@
             "refreshUrl": "https://edgefetch.dev/oauth/token",
             "scopes": {
               "crawl:read": "Read capabilities, keyless site adapters, host health, connected worker status, stored R2 artifacts, and search indexes.",
-              "crawl:fetch": "Execute polite outbound scrapes, crawls, URL maps, browser interactions, job/catalog extractions, and autonomous agent runs."
+              "crawl:fetch": "Execute polite outbound scrapes, crawls, URL maps, browser interactions, job/catalog extractions, and autonomous agent runs.",
+              "mcp:call": "Invoke tools (`action: \"call_tool\"`) on user-connected federated MCP servers via `POST /v1/mcp/query` or MCP `query_mcp`."
             }
           }
         }
@@ -3790,11 +3793,11 @@
                     },
                     "prompt": {
                       "type": "string",
-                      "description": "Optional extraction instruction when type=\"json\"."
+                      "description": "Optional extraction instruction when type=\"json\" (requires an LLM provider)."
                     },
                     "schema": {
                       "type": "object",
-                      "description": "Optional JSON Schema object when type=\"json\"."
+                      "description": "Optional JSON Schema object when type=\"json\". Without an LLM configured, schema extraction is structural/heuristic (matching JSON-LD, headings, definition lists, and key-value lines, setting unmatched fields to null); use the agent tool for semantic LLM extraction."
                     },
                     "selectors": {
                       "type": "array",
@@ -3841,7 +3844,7 @@
             "default": [
               "markdown"
             ],
-            "description": "Desired output formats (string format names or { type: \"json\", schema } for structured extraction)."
+            "description": "Desired output formats (e.g. [\"markdown\", \"links\"] or [{ type: \"json\", schema }]). Note: keyless { type: \"json\", schema } extraction is structural/heuristic; prefer agent for semantic extraction."
           },
           "renderMode": {
             "type": "string",
@@ -3852,23 +3855,23 @@
               "browser"
             ],
             "default": "auto",
-            "description": "\"auto\" (default) automatically switches thin/SPA pages to headless Chromium on edgefetch_fat nodes; \"always\" or \"browser\" forces Chromium."
+            "description": "\"auto\" (default) fetches static HTML first and only launches a headless browser on thin JavaScript-driven pages; \"off\" never uses a browser; \"always\" or \"browser\" forces headless browser rendering."
           },
           "waitForMs": {
             "type": "integer",
             "minimum": 0,
             "maximum": 15000,
-            "description": "Extra JS settle wait in ms when rendering."
+            "description": "Extra JavaScript settle wait in milliseconds when rendering in a browser."
           },
           "waitSelector": {
             "type": "string",
-            "description": "Optional CSS selector to wait for when rendering."
+            "description": "Optional CSS selector to wait for when rendering in a browser."
           },
           "maxPages": {
             "type": "integer",
             "minimum": 1,
             "maximum": 500,
-            "description": "Max PDF pages to extract via Poppler pdftotext / PyMuPDF + Tesseract OCR."
+            "description": "Maximum PDF pages to extract."
           },
           "ocr": {
             "type": "string",
@@ -3878,68 +3881,68 @@
               "off"
             ],
             "default": "auto",
-            "description": "PDF OCR mode via PyMuPDF + Tesseract 5.5.0: \"auto\" OCRs scanned/image-only PDFs; \"always\" forces OCR on image-based tables."
+            "description": "PDF OCR mode: \"auto\" runs OCR only on scanned/image-only PDFs; \"always\" forces OCR; \"off\" disables OCR."
           },
           "onlyMainContent": {
             "type": "boolean",
             "default": true,
-            "description": "Strip nav/footer/aside chrome and isolate main/article content."
+            "description": "Strip navigation, footer, and sidebar chrome to keep primary article content."
           },
           "includeTags": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Optional HTML tag/ID/class selectors (e.g. [\"article\", \"#content\", \".post-body\"]) to keep exclusively."
+            "description": "Optional HTML tag, #id, or .class selectors (e.g. [\"article\", \"#content\"]) to keep exclusively. Heading-only matches automatically expand to include their section prose."
           },
           "excludeTags": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Optional HTML tag/ID/class selectors (e.g. [\".comments\", \"#cookie-banner\", \"aside\"]) to remove before Markdown conversion."
+            "description": "Optional HTML tag, #id, or .class selectors (e.g. [\".comments\", \"aside\"]) to remove before Markdown conversion."
           },
           "includeImages": {
             "type": "boolean",
             "default": true,
-            "description": "Include content images >=100px (set false to strip all images and inline ![...] tags)."
+            "description": "Include content images >=100px (set false to omit inline image links)."
           },
           "maxChars": {
             "type": "integer",
             "minimum": 500,
             "maximum": 500000,
-            "description": "Optional max Markdown character limit (default 100000 on MCP; truncates cleanly at paragraph/word boundary and returns markdownArtifactId + nextOffset for lossless paging via read_artifact)."
+            "description": "Maximum Markdown characters returned inline (default 100000 on MCP; truncates cleanly and returns markdownArtifactId + nextOffset for paging via read_artifact)."
           },
           "discoverLlmsTxt": {
             "type": "boolean",
             "default": true,
-            "description": "Check /llms.txt and upgrade to companion .md when available."
+            "description": "Check /llms.txt and prefer publisher-provided companion .md files when available."
           },
           "preferOriginMarkdown": {
             "type": "boolean",
             "default": true,
-            "description": "Set false to negotiate text/html instead of text/markdown on origins supporting Markdown for Agents."
+            "description": "Set false to request text/html instead of text/markdown from servers that negotiate Markdown directly."
           },
           "maxAgeMs": {
             "type": "integer",
             "minimum": 0,
             "default": 0,
-            "description": "Serve cached verified Markdown if fetched within maxAgeMs."
+            "description": "Return a cached scrape result if fetched with the same options within maxAgeMs milliseconds."
           },
           "redactPii": {
             "type": "boolean",
             "default": false,
-            "description": "Redact emails, phone numbers, and SSNs."
+            "description": "Redact email addresses, phone numbers, and US SSNs from extracted text."
           },
           "checkPromptInjection": {
             "type": "boolean",
             "default": false,
-            "description": "$0 prompt-injection guard: fails fast with 403 SCRAPE_PROMPT_INJECTION_DETECTED when malicious override directives are found."
+            "description": "When true, rejects pages containing prompt-injection override directives with HTTP 403."
           },
           "mobile": {
             "type": "boolean",
             "default": false,
-            "description": "Emulate 390x844 mobile viewport in headless browser."
+            "description": "Emulate a 390x844 mobile viewport in headless browser mode."
           },
           "location": {
             "type": "object",
@@ -3958,14 +3961,14 @@
           "actions": {
             "type": "array",
             "maxItems": 50,
-            "description": "Optional inline browser actions (wait, click, write, fill, press, scroll, screenshot, scrape, executeJavascript, pdf).",
+            "description": "Optional browser actions to run before scraping (wait, click, write, fill, press, scroll, screenshot, scrape, executeJavascript, pdf).",
             "items": {
               "type": "object"
             }
           },
           "parsers": {
             "type": "array",
-            "description": "Optional PDF/image parser controls (e.g. [{ type: \"pdf\", mode: \"auto\", pages: true, pageMarkers: true }] or [] for raw base64).",
+            "description": "Optional PDF parser controls (e.g. [{ type: \"pdf\", mode: \"auto\", pages: true, pageMarkers: true }] or [] for raw base64).",
             "items": {
               "anyOf": [
                 {
@@ -3979,15 +3982,15 @@
           },
           "query": {
             "type": "string",
-            "description": "Optional focus query to rerank relevant passages."
+            "description": "Optional focus query to surface only the most relevant passages."
           },
           "jsonFilter": {
             "type": "string",
-            "description": "Optional record filter for JSON array responses (e.g. `title~\"Forward Deployed\"` or `id=abc123`), emitting 1 chunk per record."
+            "description": "Optional filter for JSON array responses (e.g. `title~\"Engineer\"` or `id=abc123`), emitting one chunk per matching record."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional FTS5 collection ID to index the verified Markdown into."
+            "description": "Optional collection ID to index the extracted Markdown into for search_collection."
           },
           "visibility": {
             "type": "string",
@@ -3996,12 +3999,12 @@
               "private"
             ],
             "default": "public",
-            "description": "Artifact & cache isolation mode (\"private\" stores R2 blobs/cache under private/<userId>/... and skips shared public cache)."
+            "description": "Cache and storage visibility (\"private\" isolates cached content to the current authenticated user)."
           },
           "waybackFallback": {
             "type": "boolean",
             "default": false,
-            "description": "Opt-in Internet Archive Wayback fallback strictly on 5xx or network-unreachable link rot (never used on robots.txt, 401/403/429, or anti-bot challenges)."
+            "description": "Opt-in Internet Archive Wayback Machine fallback strictly on 5xx errors or unreachable hosts (never used on robots.txt blocks, 401/403/429, or bot challenges)."
           },
           "spaFallback": {
             "type": "string",
@@ -4012,7 +4015,7 @@
               "firecrawl"
             ],
             "default": "auto",
-            "description": "When CRAWL4AI_API_URL or FIRECRAWL_API_URL/KEY is configured on the Hub, ethically falls back on heavy/unhydrated SPAs or missing local browser nodes (never used on robots.txt, 403/429, or challenges)."
+            "description": "Optional external SPA renderer fallback when configured on the server (never used on robots.txt blocks, 403/429, or bot challenges)."
           },
           "target": {
             "type": "string",
@@ -4025,7 +4028,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -4043,15 +4046,15 @@
             },
             "minItems": 1,
             "maxItems": 20,
-            "description": "1..20 public https:// URLs to extract from."
+            "description": "1 to 20 public https:// URLs to extract passages from."
           },
           "query": {
             "type": "string",
-            "description": "Focus query used to BM25-rank the top chunks per source."
+            "description": "Keyword or question used to rank the most relevant passages per URL (heuristic BM25 keyword ranking; returns noRelevantMatch: true when zero query terms match)."
           },
           "jsonFilter": {
             "type": "string",
-            "description": "Optional record filter for JSON array responses (e.g. `title~\"Forward Deployed\"` or `id=abc123`), emitting 1 chunk per record."
+            "description": "Optional filter for JSON array responses (e.g. `title~\"Engineer\"` or `id=abc123`), emitting one chunk per matching record."
           },
           "renderMode": {
             "type": "string",
@@ -4062,29 +4065,34 @@
               "browser"
             ],
             "default": "auto",
-            "description": "\"auto\" (default) upgrades thin scripted pages to headless Chromium; \"always\" or \"browser\" forces Chromium."
+            "description": "\"auto\" (default) renders thin JavaScript-driven pages in a headless browser; \"off\" disables browser rendering; \"always\" forces it."
           },
           "chunksPerSource": {
             "type": "integer",
             "minimum": 1,
             "maximum": 10,
             "default": 3,
-            "description": "Max chunks returned per URL."
+            "description": "Maximum ranked chunks returned per URL."
+          },
+          "includeRawContent": {
+            "type": "boolean",
+            "default": false,
+            "description": "Set true to also include combined Markdown in rawContent on each result (omitted by default to avoid duplicating chunk text)."
           },
           "maxAgeMs": {
             "type": "integer",
             "minimum": 0,
             "default": 0,
-            "description": "Serve cached verified Markdown if fetched within maxAgeMs."
+            "description": "Reuse cached Markdown if fetched within maxAgeMs milliseconds."
           },
           "redactPii": {
             "type": "boolean",
             "default": false,
-            "description": "Redact emails, phone numbers, and SSNs."
+            "description": "Redact email addresses, phone numbers, and US SSNs."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional FTS5 collection ID to index extracted pages into."
+            "description": "Optional collection ID to index extracted pages into for search_collection."
           },
           "visibility": {
             "type": "string",
@@ -4093,12 +4101,12 @@
               "private"
             ],
             "default": "public",
-            "description": "Artifact & cache isolation mode (\"private\" isolates R2 cache & FTS5 chunks to the authenticated user)."
+            "description": "Cache and index isolation mode (\"private\" isolates data to the authenticated user)."
           },
           "waybackFallback": {
             "type": "boolean",
             "default": false,
-            "description": "Opt-in Internet Archive Wayback fallback strictly on 5xx or network-unreachable link rot (never used on robots.txt, 401/403/429, or anti-bot challenges)."
+            "description": "Opt-in Internet Archive Wayback Machine fallback strictly on 5xx errors or unreachable hosts (never used on robots.txt blocks, 401/403/429, or bot challenges)."
           },
           "spaFallback": {
             "type": "string",
@@ -4109,7 +4117,7 @@
               "firecrawl"
             ],
             "default": "auto",
-            "description": "When CRAWL4AI_API_URL or FIRECRAWL_API_URL/KEY is configured on the Hub, ethically falls back on heavy/unhydrated SPAs or missing local browser nodes (never used on robots.txt, 403/429, or challenges)."
+            "description": "Optional external SPA renderer fallback when configured on the server (never used on robots.txt blocks, 403/429, or bot challenges)."
           },
           "target": {
             "type": "string",
@@ -4122,7 +4130,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -4135,21 +4143,21 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Initial public https:// URL (omit when resuming/closing sessionId)."
+            "description": "Initial public https:// URL (omit when resuming or closing an existing sessionId)."
           },
           "sessionId": {
             "type": "string",
-            "description": "Composite sessionId returned from a prior interact call with keepSession=true."
+            "description": "Session token returned from a prior interact call with keepSession=true."
           },
           "keepSession": {
             "type": "boolean",
             "default": false,
-            "description": "Keep the incognito browser tab open for follow-up interact calls."
+            "description": "Keep the isolated browser tab open for follow-up interact calls."
           },
           "closeSession": {
             "type": "boolean",
             "default": false,
-            "description": "Close the retained browser session after this turn."
+            "description": "Close an open browser session after this call."
           },
           "actions": {
             "type": "array",
@@ -4213,14 +4221,28 @@
           "waitForMs": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 15000
+            "maximum": 15000,
+            "description": "Milliseconds to wait for page state to settle."
           },
           "waitSelector": {
-            "type": "string"
+            "type": "string",
+            "description": "Optional CSS selector to wait for before extracting output."
+          },
+          "maxChars": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 500000,
+            "description": "Maximum Markdown characters to return in this call (returns totalChars, remainingChars, and nextOffset when truncated)."
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "description": "Character offset into the rendered Markdown for paging large pages."
           },
           "site": {
             "type": "string",
-            "description": "Optional specific edgefetch_fat site ID."
+            "description": "Optional browser-capable worker site ID."
           }
         },
         "additionalProperties": false
@@ -4230,11 +4252,11 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Root public https:// URL of the site."
+            "description": "Root public https:// URL of the site to map."
           },
           "search": {
             "type": "string",
-            "description": "Optional keyword filter to rank/filter matching URLs."
+            "description": "Optional keyword filter to rank and narrow discovered URLs."
           },
           "limit": {
             "type": "integer",
@@ -4249,7 +4271,7 @@
           "includeOutsidePath": {
             "type": "boolean",
             "default": false,
-            "description": "When false (default), restricts discovered URLs to the root URL path prefix when url has a subpath."
+            "description": "When false (default), restricts discovered URLs to the root URL path prefix when url includes a subpath."
           },
           "ignoreSitemap": {
             "type": "boolean",
@@ -4266,7 +4288,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -4279,25 +4301,50 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query (1..500 chars). Supports site:domain.com for $0 HAOS edge-map discovery."
-          },
-          "max_results": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 20,
-            "default": 5
+            "description": "Search query (1..500 characters). Supports site:domain.com filtering."
           },
           "maxResults": {
             "type": "integer",
             "minimum": 1,
             "maximum": 20,
-            "description": "Alias for max_results."
+            "default": 5,
+            "description": "Maximum search results to return (1..20)."
           },
-          "limit": {
+          "timeRange": {
+            "type": "string",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ],
+            "description": "Optional recency filter."
+          },
+          "includeDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Restrict results to these domains."
+          },
+          "excludeDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Exclude results from these domains."
+          },
+          "includeRawContent": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, fetches the top result URLs and attaches ranked Markdown chunks."
+          },
+          "chunksPerSource": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 20,
-            "description": "Alias for max_results."
+            "maximum": 10,
+            "default": 3,
+            "description": "Maximum Markdown chunks attached per result when includeRawContent is true."
           },
           "mode": {
             "type": "string",
@@ -4307,7 +4354,7 @@
               "serper"
             ],
             "default": "waterfall",
-            "description": "\"waterfall\" (default) runs Serper alone first and calls SearXNG/Brave only if Serper returns <3 hits; \"serper\" skips Brave completely; \"rrf\" fuses active providers in parallel."
+            "description": "Provider strategy: \"waterfall\" (default) queries the primary search provider first and falls back only when results are sparse; \"rrf\" queries configured providers in parallel; \"serper\" uses only Serper."
           },
           "providers": {
             "type": "array",
@@ -4320,100 +4367,22 @@
                 "tavily"
               ]
             },
-            "description": "Optional explicit provider allowlist (e.g. [\"serper\"] or [\"serper\", \"searxng\"] to never call Brave)."
-          },
-          "include_domains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "includeDomains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Alias for include_domains."
-          },
-          "exclude_domains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "excludeDomains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Alias for exclude_domains."
-          },
-          "time_range": {
-            "type": "string",
-            "enum": [
-              "day",
-              "week",
-              "month",
-              "year"
-            ]
-          },
-          "timeRange": {
-            "type": "string",
-            "enum": [
-              "day",
-              "week",
-              "month",
-              "year"
-            ],
-            "description": "Alias for time_range."
-          },
-          "max_age_ms": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "SERP cache max age in ms (default 86400000 = 24h; 0 bypasses cache)."
-          },
-          "maxAgeMs": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Alias for max_age_ms."
-          },
-          "include_raw_content": {
-            "type": "boolean",
-            "default": false,
-            "description": "Fetch & chunk top results politely via EdgeFetch HAOS agents."
-          },
-          "includeRawContent": {
-            "type": "boolean",
-            "description": "Alias for include_raw_content."
-          },
-          "chunks_per_source": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 10,
-            "default": 3
-          },
-          "chunksPerSource": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 10,
-            "description": "Alias for chunks_per_source."
-          },
-          "collections": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Optional private SEARCH D1 collection IDs to fuse."
+            "description": "Optional allowlist of search providers to use."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional single private SEARCH D1 collection ID to fuse."
+            "description": "Optional indexed collection ID to merge into search results."
+          },
+          "noCache": {
+            "type": "boolean",
+            "default": false,
+            "description": "Set true to bypass cached search results and fetch fresh results."
           }
         },
         "required": [
           "query"
         ],
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JobsRequest": {
         "type": "object",
@@ -4424,7 +4393,7 @@
           },
           "company": {
             "type": "string",
-            "description": "Optional company name or ATS org filter."
+            "description": "Optional company name or job-board organization slug."
           },
           "domains": {
             "type": "array",
@@ -4432,7 +4401,7 @@
               "type": "string"
             },
             "maxItems": 10,
-            "description": "Optional company domains (e.g. [\"cloudflare.com\", \"stripe.com\"]) to probe /careers and /jobs for automatic ATS board discovery across 16+ ATS platforms."
+            "description": "Optional company domains (e.g. [\"cloudflare.com\", \"stripe.com\"]) to probe /careers and /jobs for official job-board discovery."
           },
           "remote": {
             "type": "boolean",
@@ -4448,7 +4417,7 @@
           "minBase": {
             "type": "number",
             "minimum": 0,
-            "description": "Minimum annual base salary floor (ignores total-target-cash / OTE unless basis === \"base\")."
+            "description": "Minimum annual base salary filter."
           },
           "minBaseMode": {
             "type": "string",
@@ -4457,18 +4426,18 @@
               "ceiling"
             ],
             "default": "floor",
-            "description": "How minBase evaluates salary ranges: \"floor\" (default, pay.min >= minBase) or \"ceiling\" (pay.max >= minBase)."
+            "description": "How minBase compares against salary ranges: \"floor\" (pay.min >= minBase) or \"ceiling\" (pay.max >= minBase)."
           },
           "strictPay": {
             "type": "boolean",
             "default": false,
-            "description": "When true and minBase is set, drop jobs with unlisted pay instead of keeping them with payUnknown: true."
+            "description": "When true and minBase is set, exclude postings that do not list compensation."
           },
           "postedWithinDays": {
             "type": "integer",
             "minimum": 1,
             "maximum": 365,
-            "description": "Filter postings published within N days."
+            "description": "Keep postings published within the last N days."
           },
           "limit": {
             "type": "integer",
@@ -4479,12 +4448,12 @@
           "includeBuiltIn": {
             "type": "boolean",
             "default": true,
-            "description": "Also check Built In remote job search (disabled by default when company or domains is set)."
+            "description": "Include Built In job listings (disabled automatically when company or domains is set)."
           },
           "includePublicFeeds": {
             "type": "boolean",
             "default": false,
-            "description": "Opt-in to robots.txt-allowed public remote job feeds (We Work Remotely, Himalayas, Working Nomads)."
+            "description": "Opt in to public remote job feeds (We Work Remotely, Himalayas, Working Nomads)."
           },
           "mode": {
             "type": "string",
@@ -4492,7 +4461,7 @@
               "search",
               "verify"
             ],
-            "description": "Execution mode (\"search\" default, or \"verify\" to batch-check saved job posting URLs)."
+            "description": "Execution mode (\"search\" default, or \"verify\" to batch-check whether saved job URLs are still live)."
           },
           "verify": {
             "type": "array",
@@ -4500,7 +4469,7 @@
               "type": "string"
             },
             "maxItems": 50,
-            "description": "Optional list of saved https:// job posting URLs to batch-verify (\"live\" | \"closed\" | \"board_gone\" | \"unknown\") by grouping per ATS board."
+            "description": "Saved https:// job posting URLs to batch-verify (\"live\" | \"closed\" | \"board_gone\" | \"unknown\")."
           },
           "urls": {
             "type": "array",
@@ -4527,7 +4496,7 @@
               },
               "additionalProperties": false
             },
-            "description": "Optional list of already-applied roles to exclude."
+            "description": "Optional list of roles to exclude from results."
           },
           "target": {
             "type": "string",
@@ -4540,7 +4509,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "additionalProperties": false
@@ -4550,11 +4519,11 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Public https:// storefront or collection URL (omit when polling/paging an existing catalogId)."
+            "description": "Public https:// storefront or collection URL (omit when paging an existing catalogId)."
           },
           "catalogId": {
             "type": "string",
-            "description": "Existing catalog run ID (`cat_...`) to poll status or page/filter normalized records."
+            "description": "Existing catalog run ID (`cat_...`) to poll status or page/filter product records."
           },
           "platform": {
             "type": "string",
@@ -4568,7 +4537,7 @@
           },
           "collection": {
             "type": "string",
-            "description": "Optional Shopify/WooCommerce collection or category slug."
+            "description": "Optional collection or category slug."
           },
           "fields": {
             "type": "string",
@@ -4577,7 +4546,7 @@
               "lean"
             ],
             "default": "full",
-            "description": "\"full\" includes descriptionText and images; \"lean\" keeps pricing/SKU/availability fields compact."
+            "description": "\"full\" includes descriptions and images; \"lean\" returns compact pricing, SKU, and availability fields."
           },
           "maxPages": {
             "type": "integer",
@@ -4589,12 +4558,12 @@
             "type": "integer",
             "minimum": 500,
             "maximum": 30000,
-            "description": "Polite pause between sequential pages in ms (>= 2000ms on Shopify)."
+            "description": "Polite pause between sequential pages in milliseconds."
           },
           "sync": {
             "type": "boolean",
             "default": true,
-            "description": "Set false to run asynchronously via waitUntil and poll with catalogId."
+            "description": "Set false to run in the background and poll with catalogId."
           },
           "offset": {
             "type": "integer",
@@ -4605,7 +4574,7 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 250,
-            "description": "Max records to return when paging an existing catalogId (default 50)."
+            "description": "Maximum records to return when paging an existing catalogId (default 50)."
           },
           "vendor": {
             "anyOf": [
@@ -4637,11 +4606,11 @@
           },
           "availableOnly": {
             "type": "boolean",
-            "description": "When true on catalogId record queries, keep only products with >=1 available variant."
+            "description": "When true, keep only products with at least one in-stock variant."
           },
           "query": {
             "type": "string",
-            "description": "Optional keyword search across title, handle, vendor, tags, and SKUs when paging catalogId."
+            "description": "Optional keyword filter across title, handle, vendor, tags, and SKUs when paging catalogId."
           },
           "target": {
             "type": "string",
@@ -4654,7 +4623,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "additionalProperties": false
@@ -4718,11 +4687,11 @@
                     },
                     "prompt": {
                       "type": "string",
-                      "description": "Optional extraction instruction when type=\"json\"."
+                      "description": "Optional extraction instruction when type=\"json\" (requires an LLM provider)."
                     },
                     "schema": {
                       "type": "object",
-                      "description": "Optional JSON Schema object when type=\"json\"."
+                      "description": "Optional JSON Schema object when type=\"json\". Without an LLM configured, schema extraction is structural/heuristic (matching JSON-LD, headings, definition lists, and key-value lines, setting unmatched fields to null); use the agent tool for semantic LLM extraction."
                     },
                     "selectors": {
                       "type": "array",
@@ -4769,7 +4738,7 @@
             "default": [
               "markdown"
             ],
-            "description": "Desired output formats (string format names or { type: \"json\", schema } for structured extraction)."
+            "description": "Desired output formats (e.g. [\"markdown\", \"links\"] or [{ type: \"json\", schema }]). Note: keyless { type: \"json\", schema } extraction is structural/heuristic; prefer agent for semantic extraction."
           },
           "renderMode": {
             "type": "string",
@@ -4780,23 +4749,23 @@
               "browser"
             ],
             "default": "auto",
-            "description": "\"auto\" (default) automatically switches thin/SPA pages to headless Chromium on edgefetch_fat nodes; \"always\" or \"browser\" forces Chromium."
+            "description": "\"auto\" (default) fetches static HTML first and only launches a headless browser on thin JavaScript-driven pages; \"off\" never uses a browser; \"always\" or \"browser\" forces headless browser rendering."
           },
           "onlyMainContent": {
             "type": "boolean",
             "default": true,
-            "description": "Strip nav/footer/aside chrome and isolate main/article content."
+            "description": "Strip navigation, footer, and sidebar chrome to keep primary article content."
           },
           "maxAgeMs": {
             "type": "integer",
             "minimum": 0,
             "default": 0,
-            "description": "Serve cached verified Markdown if fetched within maxAgeMs."
+            "description": "Return a cached scrape result if fetched with the same options within maxAgeMs milliseconds."
           },
           "redactPii": {
             "type": "boolean",
             "default": false,
-            "description": "Redact emails, phone numbers, and SSNs."
+            "description": "Redact email addresses, phone numbers, and US SSNs from extracted text."
           },
           "target": {
             "type": "string",
@@ -4809,7 +4778,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -4845,13 +4814,15 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 200,
-            "default": 25
+            "default": 25,
+            "description": "Maximum pages to crawl (1..200)."
           },
           "maxDepth": {
             "type": "integer",
             "minimum": 0,
             "maximum": 5,
-            "default": 2
+            "default": 2,
+            "description": "Maximum link hop depth from the root URL."
           },
           "allowSubdomains": {
             "type": "boolean",
@@ -4861,17 +4832,19 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Optional path prefixes or regexes to include."
           },
           "excludePaths": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Optional path prefixes or regexes to skip."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional SEARCH D1 collection ID to index crawled pages into."
+            "description": "Optional collection ID to index crawled pages into for search_collection."
           },
           "sync": {
             "type": "boolean",
@@ -4920,7 +4893,7 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Keyword search query matched safely against FTS5 chunks."
+            "description": "Keyword query to match against indexed document chunks."
           },
           "q": {
             "type": "string",
@@ -4930,7 +4903,8 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 50,
-            "default": 10
+            "default": 10,
+            "description": "Maximum matching chunks to return (1..50)."
           }
         },
         "additionalProperties": false
@@ -4982,23 +4956,23 @@
         "properties": {
           "prompt": {
             "type": "string",
-            "description": "Natural-language goal or research question (URLs optional)."
+            "description": "Natural-language research question or extraction goal."
           },
           "urls": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Optional seed public https:// URLs."
+            "description": "Optional starting public https:// URLs."
           },
           "strictConstrainToURLs": {
             "type": "boolean",
             "default": false,
-            "description": "Restrict navigation strictly to seed urls."
+            "description": "Restrict navigation strictly to the provided seed urls."
           },
           "schema": {
             "type": "object",
-            "description": "Optional JSON Schema for structured output validation."
+            "description": "Optional JSON Schema for semantic structured output validation."
           },
           "effort": {
             "type": "string",
@@ -5021,12 +4995,12 @@
           },
           "threadId": {
             "type": "string",
-            "description": "Optional prior agt_... threadId for multi-turn continuation."
+            "description": "Optional prior `agt_...` threadId for multi-turn follow-up."
           },
           "zeroDataRetention": {
             "type": "boolean",
             "default": false,
-            "description": "$0 native Zero Data Retention (skips D1/R2 persistence)."
+            "description": "When true, skips persisting run history or cached artifacts."
           },
           "safe": {
             "type": "boolean",
@@ -5048,7 +5022,7 @@
           },
           "llm": {
             "type": "object",
-            "description": "Optional BYO-LLM override (e.g. { provider: \"ollama\"|\"openai\"|\"anthropic\"|\"gemini\", model, baseUrl }).",
+            "description": "Optional BYO-LLM configuration (e.g. { provider: \"openai\"|\"anthropic\"|\"gemini\"|\"ollama\", model, baseUrl, apiKey }).",
             "properties": {
               "provider": {
                 "type": "string"
@@ -5540,6 +5514,9 @@
           "ok": {
             "type": "boolean"
           },
+          "cached": {
+            "type": "boolean"
+          },
           "url": {
             "type": "string"
           },
@@ -5552,14 +5529,42 @@
           "via": {
             "type": "string"
           },
+          "rendered": {
+            "type": "boolean"
+          },
           "title": {
             "type": "string"
           },
           "description": {
             "type": "string"
           },
+          "wordCount": {
+            "type": "integer"
+          },
+          "favicon": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
           "markdown": {
             "type": "string"
+          },
+          "json": {
+            "type": "object"
+          },
+          "jsonExtractionMode": {
+            "type": "string",
+            "enum": [
+              "heuristic",
+              "llm"
+            ]
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "links": {
             "type": "array",
@@ -5642,8 +5647,41 @@
           "finalUrl": {
             "type": "string"
           },
+          "rendered": {
+            "type": "boolean"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "markdown": {
             "type": "string"
+          },
+          "truncated": {
+            "type": "boolean"
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "totalChars": {
+            "type": "integer"
+          },
+          "remainingChars": {
+            "type": "integer"
+          },
+          "nextOffset": {
+            "type": [
+              "integer",
+              "null"
+            ]
           },
           "screenshotBase64": {
             "type": "string"
@@ -5822,14 +5860,14 @@
       },
       "McpTool_ListAgentsInput": {
         "title": "List Connected Crawler Agents (MCP list_agents)",
-        "description": "List connected Home Assistant OS / EdgeFetch standby crawler agents (LITE vs FAT browser/PDF tiers), CPU architectures, job counters, and active host-affinity pins.",
+        "description": "Returns connected crawler worker nodes, their capabilities (HTTP vs headless browser and PDF support), CPU architectures, job counts, and active host routing pins.",
         "type": "object",
         "properties": {},
         "additionalProperties": false
       },
       "McpTool_FetchUrlInput": {
-        "title": "Fetch Public HTTPS URL (MCP fetch_url)",
-        "description": "Fetch a public HTTPS URL politely through the EdgeFetch coordinator (enforcing robots.txt, per-host rate limits, SSRF blocks, and returning DNS/TLS/TTFB phase timings plus response content).",
+        "title": "Low-Level Raw HTTP Fetch (APIs/XML/Headers — Use scrape for Web Pages) (MCP fetch_url)",
+        "description": "Fetches a single public HTTPS URL and returns raw, unparsed HTTP body bytes, status code, safe response headers, and timing. Use this ONLY for JSON/XML APIs, raw data files, or HTTP header inspection — NEVER for HTML web pages or articles (use scrape for 1 page or extract for multiple pages instead).",
         "type": "object",
         "properties": {
           "url": {
@@ -5844,7 +5882,7 @@
               "page",
               "text"
             ],
-            "description": "Optional response kind (\"page\" for HTML, \"text\" for sitemaps/XML/RSS/Markdown/plain text, \"json\" for JSON APIs, \"feed\" for Shopify /products.json). Omit to auto-detect from URL."
+            "description": "Optional response kind (\"json\" for JSON APIs, \"text\" for XML/RSS/Markdown/plain text, \"feed\" for product JSON feeds, \"page\" for raw HTML). Omit to auto-detect from URL."
           },
           "accept": {
             "type": "string",
@@ -5859,7 +5897,7 @@
               "text/calendar",
               "text/plain"
             ],
-            "description": "Optional Accept media type override (e.g. \"text/html\" on kind=\"page\" to request HTML instead of text/markdown; for kind=\"text\", defaults from URL extension)."
+            "description": "Optional Accept header media type override (defaults automatically based on the URL when omitted)."
           },
           "target": {
             "type": "string",
@@ -5869,16 +5907,16 @@
               "container"
             ],
             "default": "auto",
-            "description": "Execution tier (\"auto\" = load-balance across remote HAOS nodes and reach out via Cloudflare only on 429, \"agent\", or \"container\")."
+            "description": "Execution route (\"auto\" uses connected crawler nodes first with automatic overflow, \"agent\" forces a connected node, \"container\" forces cloud overflow)."
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID to pin (e.g. \"site-arm64\", \"site-x86\", \"site-win-vm\")."
+            "description": "Optional worker site ID to pin when target=\"agent\"."
           },
           "respectRobots": {
             "type": "boolean",
             "default": true,
-            "description": "Respect /robots.txt Allow/Disallow and Crawl-delay."
+            "description": "Respect /robots.txt Allow, Disallow, and Crawl-delay rules."
           },
           "robots": {
             "type": "boolean",
@@ -5887,13 +5925,13 @@
           "includeBody": {
             "type": "boolean",
             "default": true,
-            "description": "Include response body preview in tool output."
+            "description": "Include the response body preview in tool output."
           },
           "maxBytes": {
             "type": "integer",
             "minimum": 256,
             "maximum": 16777216,
-            "description": "Maximum inline preview size in chars/bytes (256..16777216). Full untruncated body is always stored in R2 and readable via read_artifact."
+            "description": "Maximum inline preview size in characters/bytes (256..16777216). Larger bodies return an artifactId readable via read_artifact."
           },
           "ifNoneMatch": {
             "type": "string",
@@ -5911,7 +5949,7 @@
       },
       "McpTool_FetchBatchInput": {
         "title": "Batch Fetch Public HTTPS URLs (MCP fetch_batch)",
-        "description": "Politely fetch up to 25 public HTTPS URLs in one coordinated batch with per-host serialization, positive dwell jitter, robots.txt checks, and phase timing.",
+        "description": "Fetches 1 to 25 public HTTPS URLs in one polite batch and returns per-URL HTTP status, outcome (\"ok\", \"not_found\" for 404, \"gone\" for 410, \"dns_not_found\", \"blocked\", or \"rate_limited\"), headers, and optional raw body previews. Use this for batch API/feed/status checks; prefer extract when you want clean readable passages from web pages.",
         "type": "object",
         "properties": {
           "urls": {
@@ -5931,7 +5969,7 @@
               "page",
               "text"
             ],
-            "description": "Optional kind applied to every URL; omit to auto-detect per URL (HTML -> \"page\", RSS/XML/Markdown/txt -> \"text\", .json -> \"json\")."
+            "description": "Optional kind applied to every URL; omit to auto-detect per URL."
           },
           "accept": {
             "type": "string",
@@ -5946,7 +5984,7 @@
               "text/calendar",
               "text/plain"
             ],
-            "description": "For kind \"text\" only; applies to every URL. Default: picked from each URL."
+            "description": "Optional Accept media type for text requests; omit to infer per URL."
           },
           "target": {
             "type": "string",
@@ -5959,21 +5997,21 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           },
           "pauseMs": {
             "type": "integer",
             "minimum": 0,
             "maximum": 30000,
             "default": 1000,
-            "description": "Minimum per-host pause in ms."
+            "description": "Minimum per-host pause in milliseconds."
           },
           "pauseJitterMs": {
             "type": "integer",
             "minimum": 0,
             "maximum": 15000,
             "default": 500,
-            "description": "Random positive jitter added to pauseMs."
+            "description": "Random positive jitter in milliseconds added to pauseMs."
           },
           "respectRobots": {
             "type": "boolean",
@@ -5986,14 +6024,14 @@
           "includeBody": {
             "type": "boolean",
             "default": false,
-            "description": "Set true to include truncated body previews per URL."
+            "description": "Set true to include truncated raw body previews per URL."
           },
           "previewBytes": {
             "type": "integer",
             "minimum": 256,
             "maximum": 65536,
             "default": 3072,
-            "description": "Max inline body preview chars per URL when includeBody=true (default 3072; full body stays in R2 via read_artifact)."
+            "description": "Maximum inline body preview characters per URL when includeBody=true (default 3072; full body can be paged via read_artifact)."
           }
         },
         "required": [
@@ -6003,7 +6041,7 @@
       },
       "McpTool_ScrapeInput": {
         "title": "Scrape URL to Markdown & Metadata (MCP scrape)",
-        "description": "Scrape a public HTTPS URL into clean main-content Markdown, metadata, links, images, branding, changes diff, and /llms.txt + companion .md discovery (with verified META D1 + R2 maxAgeMs caching and optional Chromium rendering).",
+        "description": "Reads a single public HTTPS web page, PDF, RSS/Atom feed, OpenAPI spec, or Jupyter notebook and returns clean main-content Markdown plus structured metadata (title, wordCount, favicon, canonicalUrl, contentType, links, and images). Prefer scrape for reading 1 URL, extract for query-focused passages across multiple URLs, and interact when clicking or typing in a browser is required.",
         "type": "object",
         "properties": {
           "url": {
@@ -6047,11 +6085,11 @@
                     },
                     "prompt": {
                       "type": "string",
-                      "description": "Optional extraction instruction when type=\"json\"."
+                      "description": "Optional extraction instruction when type=\"json\" (requires an LLM provider)."
                     },
                     "schema": {
                       "type": "object",
-                      "description": "Optional JSON Schema object when type=\"json\"."
+                      "description": "Optional JSON Schema object when type=\"json\". Without an LLM configured, schema extraction is structural/heuristic (matching JSON-LD, headings, definition lists, and key-value lines, setting unmatched fields to null); use the agent tool for semantic LLM extraction."
                     },
                     "selectors": {
                       "type": "array",
@@ -6098,7 +6136,7 @@
             "default": [
               "markdown"
             ],
-            "description": "Desired output formats (string format names or { type: \"json\", schema } for structured extraction)."
+            "description": "Desired output formats (e.g. [\"markdown\", \"links\"] or [{ type: \"json\", schema }]). Note: keyless { type: \"json\", schema } extraction is structural/heuristic; prefer agent for semantic extraction."
           },
           "renderMode": {
             "type": "string",
@@ -6109,23 +6147,23 @@
               "browser"
             ],
             "default": "auto",
-            "description": "\"auto\" (default) automatically switches thin/SPA pages to headless Chromium on edgefetch_fat nodes; \"always\" or \"browser\" forces Chromium."
+            "description": "\"auto\" (default) fetches static HTML first and only launches a headless browser on thin JavaScript-driven pages; \"off\" never uses a browser; \"always\" or \"browser\" forces headless browser rendering."
           },
           "waitForMs": {
             "type": "integer",
             "minimum": 0,
             "maximum": 15000,
-            "description": "Extra JS settle wait in ms when rendering."
+            "description": "Extra JavaScript settle wait in milliseconds when rendering in a browser."
           },
           "waitSelector": {
             "type": "string",
-            "description": "Optional CSS selector to wait for when rendering."
+            "description": "Optional CSS selector to wait for when rendering in a browser."
           },
           "maxPages": {
             "type": "integer",
             "minimum": 1,
             "maximum": 500,
-            "description": "Max PDF pages to extract via Poppler pdftotext / PyMuPDF + Tesseract OCR."
+            "description": "Maximum PDF pages to extract."
           },
           "ocr": {
             "type": "string",
@@ -6135,68 +6173,68 @@
               "off"
             ],
             "default": "auto",
-            "description": "PDF OCR mode via PyMuPDF + Tesseract 5.5.0: \"auto\" OCRs scanned/image-only PDFs; \"always\" forces OCR on image-based tables."
+            "description": "PDF OCR mode: \"auto\" runs OCR only on scanned/image-only PDFs; \"always\" forces OCR; \"off\" disables OCR."
           },
           "onlyMainContent": {
             "type": "boolean",
             "default": true,
-            "description": "Strip nav/footer/aside chrome and isolate main/article content."
+            "description": "Strip navigation, footer, and sidebar chrome to keep primary article content."
           },
           "includeTags": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Optional HTML tag/ID/class selectors (e.g. [\"article\", \"#content\", \".post-body\"]) to keep exclusively."
+            "description": "Optional HTML tag, #id, or .class selectors (e.g. [\"article\", \"#content\"]) to keep exclusively. Heading-only matches automatically expand to include their section prose."
           },
           "excludeTags": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Optional HTML tag/ID/class selectors (e.g. [\".comments\", \"#cookie-banner\", \"aside\"]) to remove before Markdown conversion."
+            "description": "Optional HTML tag, #id, or .class selectors (e.g. [\".comments\", \"aside\"]) to remove before Markdown conversion."
           },
           "includeImages": {
             "type": "boolean",
             "default": true,
-            "description": "Include content images >=100px (set false to strip all images and inline ![...] tags)."
+            "description": "Include content images >=100px (set false to omit inline image links)."
           },
           "maxChars": {
             "type": "integer",
             "minimum": 500,
             "maximum": 500000,
-            "description": "Optional max Markdown character limit (default 100000 on MCP; truncates cleanly at paragraph/word boundary and returns markdownArtifactId + nextOffset for lossless paging via read_artifact)."
+            "description": "Maximum Markdown characters returned inline (default 100000 on MCP; truncates cleanly and returns markdownArtifactId + nextOffset for paging via read_artifact)."
           },
           "discoverLlmsTxt": {
             "type": "boolean",
             "default": true,
-            "description": "Check /llms.txt and upgrade to companion .md when available."
+            "description": "Check /llms.txt and prefer publisher-provided companion .md files when available."
           },
           "preferOriginMarkdown": {
             "type": "boolean",
             "default": true,
-            "description": "Set false to negotiate text/html instead of text/markdown on origins supporting Markdown for Agents."
+            "description": "Set false to request text/html instead of text/markdown from servers that negotiate Markdown directly."
           },
           "maxAgeMs": {
             "type": "integer",
             "minimum": 0,
             "default": 0,
-            "description": "Serve cached verified Markdown if fetched within maxAgeMs."
+            "description": "Return a cached scrape result if fetched with the same options within maxAgeMs milliseconds."
           },
           "redactPii": {
             "type": "boolean",
             "default": false,
-            "description": "Redact emails, phone numbers, and SSNs."
+            "description": "Redact email addresses, phone numbers, and US SSNs from extracted text."
           },
           "checkPromptInjection": {
             "type": "boolean",
             "default": false,
-            "description": "$0 prompt-injection guard: fails fast with 403 SCRAPE_PROMPT_INJECTION_DETECTED when malicious override directives are found."
+            "description": "When true, rejects pages containing prompt-injection override directives with HTTP 403."
           },
           "mobile": {
             "type": "boolean",
             "default": false,
-            "description": "Emulate 390x844 mobile viewport in headless browser."
+            "description": "Emulate a 390x844 mobile viewport in headless browser mode."
           },
           "location": {
             "type": "object",
@@ -6215,14 +6253,14 @@
           "actions": {
             "type": "array",
             "maxItems": 50,
-            "description": "Optional inline browser actions (wait, click, write, fill, press, scroll, screenshot, scrape, executeJavascript, pdf).",
+            "description": "Optional browser actions to run before scraping (wait, click, write, fill, press, scroll, screenshot, scrape, executeJavascript, pdf).",
             "items": {
               "type": "object"
             }
           },
           "parsers": {
             "type": "array",
-            "description": "Optional PDF/image parser controls (e.g. [{ type: \"pdf\", mode: \"auto\", pages: true, pageMarkers: true }] or [] for raw base64).",
+            "description": "Optional PDF parser controls (e.g. [{ type: \"pdf\", mode: \"auto\", pages: true, pageMarkers: true }] or [] for raw base64).",
             "items": {
               "anyOf": [
                 {
@@ -6236,15 +6274,15 @@
           },
           "query": {
             "type": "string",
-            "description": "Optional focus query to rerank relevant passages."
+            "description": "Optional focus query to surface only the most relevant passages."
           },
           "jsonFilter": {
             "type": "string",
-            "description": "Optional record filter for JSON array responses (e.g. `title~\"Forward Deployed\"` or `id=abc123`), emitting 1 chunk per record."
+            "description": "Optional filter for JSON array responses (e.g. `title~\"Engineer\"` or `id=abc123`), emitting one chunk per matching record."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional FTS5 collection ID to index the verified Markdown into."
+            "description": "Optional collection ID to index the extracted Markdown into for search_collection."
           },
           "visibility": {
             "type": "string",
@@ -6253,12 +6291,12 @@
               "private"
             ],
             "default": "public",
-            "description": "Artifact & cache isolation mode (\"private\" stores R2 blobs/cache under private/<userId>/... and skips shared public cache)."
+            "description": "Cache and storage visibility (\"private\" isolates cached content to the current authenticated user)."
           },
           "waybackFallback": {
             "type": "boolean",
             "default": false,
-            "description": "Opt-in Internet Archive Wayback fallback strictly on 5xx or network-unreachable link rot (never used on robots.txt, 401/403/429, or anti-bot challenges)."
+            "description": "Opt-in Internet Archive Wayback Machine fallback strictly on 5xx errors or unreachable hosts (never used on robots.txt blocks, 401/403/429, or bot challenges)."
           },
           "spaFallback": {
             "type": "string",
@@ -6269,7 +6307,7 @@
               "firecrawl"
             ],
             "default": "auto",
-            "description": "When CRAWL4AI_API_URL or FIRECRAWL_API_URL/KEY is configured on the Hub, ethically falls back on heavy/unhydrated SPAs or missing local browser nodes (never used on robots.txt, 403/429, or challenges)."
+            "description": "Optional external SPA renderer fallback when configured on the server (never used on robots.txt blocks, 403/429, or bot challenges)."
           },
           "target": {
             "type": "string",
@@ -6282,7 +6320,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -6292,7 +6330,7 @@
       },
       "McpTool_ExtractInput": {
         "title": "Extract Focused Passages from URLs (MCP extract)",
-        "description": "Extract clean Markdown and BM25 query-ranked chunks across 1..20 public HTTPS URLs in one polite batch (with optional verified maxAgeMs cache and FTS5 collection indexing).",
+        "description": "Extracts clean, query-ranked Markdown passages across 1 to 20 public HTTPS URLs in one batch. Returns top matching chunks per URL (or noRelevantMatch: true with empty chunks when zero query terms appear on a page). Prefer extract for multi-URL question answering and scrape for reading one full page.",
         "type": "object",
         "properties": {
           "urls": {
@@ -6302,15 +6340,15 @@
             },
             "minItems": 1,
             "maxItems": 20,
-            "description": "1..20 public https:// URLs to extract from."
+            "description": "1 to 20 public https:// URLs to extract passages from."
           },
           "query": {
             "type": "string",
-            "description": "Focus query used to BM25-rank the top chunks per source."
+            "description": "Keyword or question used to rank the most relevant passages per URL (heuristic BM25 keyword ranking; returns noRelevantMatch: true when zero query terms match)."
           },
           "jsonFilter": {
             "type": "string",
-            "description": "Optional record filter for JSON array responses (e.g. `title~\"Forward Deployed\"` or `id=abc123`), emitting 1 chunk per record."
+            "description": "Optional filter for JSON array responses (e.g. `title~\"Engineer\"` or `id=abc123`), emitting one chunk per matching record."
           },
           "renderMode": {
             "type": "string",
@@ -6321,29 +6359,34 @@
               "browser"
             ],
             "default": "auto",
-            "description": "\"auto\" (default) upgrades thin scripted pages to headless Chromium; \"always\" or \"browser\" forces Chromium."
+            "description": "\"auto\" (default) renders thin JavaScript-driven pages in a headless browser; \"off\" disables browser rendering; \"always\" forces it."
           },
           "chunksPerSource": {
             "type": "integer",
             "minimum": 1,
             "maximum": 10,
             "default": 3,
-            "description": "Max chunks returned per URL."
+            "description": "Maximum ranked chunks returned per URL."
+          },
+          "includeRawContent": {
+            "type": "boolean",
+            "default": false,
+            "description": "Set true to also include combined Markdown in rawContent on each result (omitted by default to avoid duplicating chunk text)."
           },
           "maxAgeMs": {
             "type": "integer",
             "minimum": 0,
             "default": 0,
-            "description": "Serve cached verified Markdown if fetched within maxAgeMs."
+            "description": "Reuse cached Markdown if fetched within maxAgeMs milliseconds."
           },
           "redactPii": {
             "type": "boolean",
             "default": false,
-            "description": "Redact emails, phone numbers, and SSNs."
+            "description": "Redact email addresses, phone numbers, and US SSNs."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional FTS5 collection ID to index extracted pages into."
+            "description": "Optional collection ID to index extracted pages into for search_collection."
           },
           "visibility": {
             "type": "string",
@@ -6352,12 +6395,12 @@
               "private"
             ],
             "default": "public",
-            "description": "Artifact & cache isolation mode (\"private\" isolates R2 cache & FTS5 chunks to the authenticated user)."
+            "description": "Cache and index isolation mode (\"private\" isolates data to the authenticated user)."
           },
           "waybackFallback": {
             "type": "boolean",
             "default": false,
-            "description": "Opt-in Internet Archive Wayback fallback strictly on 5xx or network-unreachable link rot (never used on robots.txt, 401/403/429, or anti-bot challenges)."
+            "description": "Opt-in Internet Archive Wayback Machine fallback strictly on 5xx errors or unreachable hosts (never used on robots.txt blocks, 401/403/429, or bot challenges)."
           },
           "spaFallback": {
             "type": "string",
@@ -6368,7 +6411,7 @@
               "firecrawl"
             ],
             "default": "auto",
-            "description": "When CRAWL4AI_API_URL or FIRECRAWL_API_URL/KEY is configured on the Hub, ethically falls back on heavy/unhydrated SPAs or missing local browser nodes (never used on robots.txt, 403/429, or challenges)."
+            "description": "Optional external SPA renderer fallback when configured on the server (never used on robots.txt blocks, 403/429, or bot challenges)."
           },
           "target": {
             "type": "string",
@@ -6381,7 +6424,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -6391,16 +6434,16 @@
       },
       "McpTool_MapInput": {
         "title": "Map Site URLs (MCP map)",
-        "description": "Discover URLs on a site rapidly and politely via robots.txt Sitemap:, sitemap.xml / .xml.gz, /llms.txt, and homepage links, with optional search filter.",
+        "description": "Discovers public URLs on a website using sitemaps, /llms.txt, and homepage links, returning a filtered list of links without scraping every page.",
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "Root public https:// URL of the site."
+            "description": "Root public https:// URL of the site to map."
           },
           "search": {
             "type": "string",
-            "description": "Optional keyword filter to rank/filter matching URLs."
+            "description": "Optional keyword filter to rank and narrow discovered URLs."
           },
           "limit": {
             "type": "integer",
@@ -6415,7 +6458,7 @@
           "includeOutsidePath": {
             "type": "boolean",
             "default": false,
-            "description": "When false (default), restricts discovered URLs to the root URL path prefix when url has a subpath."
+            "description": "When false (default), restricts discovered URLs to the root URL path prefix when url includes a subpath."
           },
           "ignoreSitemap": {
             "type": "boolean",
@@ -6432,7 +6475,7 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "required": [
@@ -6441,34 +6484,40 @@
         "additionalProperties": false
       },
       "McpTool_CrawlInput": {
-        "title": "Async Site Crawl (Start / Status / Cancel) (MCP crawl)",
-        "description": "Start an async multi-page breadth-first site crawl (with robots.txt, includePaths/excludePaths, SEARCH D1 FTS5 indexing, and HMAC webhooks), OR pass crawlId to poll status / cancel.",
+        "title": "Site Crawl (Run / Poll Status / Cancel) (MCP crawl)",
+        "description": "Crawls multiple pages of a website breadth-first (respecting robots.txt and path filters) and indexes them into a searchable collection. Small crawls (limit <= 5) wait up to 25 seconds to return completed pages directly; larger or background crawls return a crawlId that you can poll or cancel by calling crawl with { crawlId }.",
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "Root public https:// URL to start crawling (omit when checking/cancelling crawlId)."
+            "description": "Root public https:// URL to start crawling (omit when polling or cancelling an existing crawlId)."
           },
           "crawlId": {
             "type": "string",
-            "description": "Existing crawl ID (`crw_...`) to check status or cancel."
+            "description": "Existing crawl ID (`crw_...`) to poll progress/results or cancel."
           },
           "cancel": {
             "type": "boolean",
             "default": false,
             "description": "Set true with crawlId to cancel a running crawl."
           },
+          "async": {
+            "type": "boolean",
+            "description": "Set true to run in the background immediately and return crawlId even when limit <= 5."
+          },
           "limit": {
             "type": "integer",
             "minimum": 1,
             "maximum": 200,
-            "default": 25
+            "default": 25,
+            "description": "Maximum pages to crawl (1..200)."
           },
           "maxDepth": {
             "type": "integer",
             "minimum": 0,
             "maximum": 5,
-            "default": 2
+            "default": 2,
+            "description": "Maximum link hop depth from the root URL."
           },
           "allowSubdomains": {
             "type": "boolean",
@@ -6478,53 +6527,80 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Optional path prefixes or regexes to include."
           },
           "excludePaths": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Optional path prefixes or regexes to skip."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional SEARCH D1 collection ID to index crawled pages into."
+            "description": "Optional collection ID to index crawled pages into for search_collection."
           },
           "offset": {
             "type": "integer",
             "minimum": 0,
             "default": 0,
-            "description": "Result offset when polling crawlId."
+            "description": "Result offset when polling an existing crawlId."
           }
         },
         "additionalProperties": false
       },
       "McpTool_SearchInput": {
-        "title": "Search Web & Crawled Collections (MCP search)",
-        "description": "Edge-first web & collection search: queries private SEARCH D1 FTS5 + HAOS edge-map (/llms.txt & sitemap.xml on site: queries) + 24h SERP cache + Serper (Google) waterfall (calling SearXNG/Brave only on <3 hits), with optional live HAOS page extraction.",
+        "title": "Search Web & News (MCP search)",
+        "description": "Searches the web, news headlines (topic=\"news\"), and optional indexed collections, returning ranked results with titles, URLs, snippets, and optional extracted page chunks when includeRawContent is true.",
         "type": "object",
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query (1..500 chars). Supports site:domain.com for $0 HAOS edge-map discovery."
-          },
-          "max_results": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 20,
-            "default": 5
+            "description": "Search query (1..500 characters). Supports site:domain.com filtering."
           },
           "maxResults": {
             "type": "integer",
             "minimum": 1,
             "maximum": 20,
-            "description": "Alias for max_results."
+            "default": 5,
+            "description": "Maximum search results to return (1..20)."
           },
-          "limit": {
+          "timeRange": {
+            "type": "string",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ],
+            "description": "Optional recency filter."
+          },
+          "includeDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Restrict results to these domains."
+          },
+          "excludeDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Exclude results from these domains."
+          },
+          "includeRawContent": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, fetches the top result URLs and attaches ranked Markdown chunks."
+          },
+          "chunksPerSource": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 20,
-            "description": "Alias for max_results."
+            "maximum": 10,
+            "default": 3,
+            "description": "Maximum Markdown chunks attached per result when includeRawContent is true."
           },
           "mode": {
             "type": "string",
@@ -6534,7 +6610,7 @@
               "serper"
             ],
             "default": "waterfall",
-            "description": "\"waterfall\" (default) runs Serper alone first and calls SearXNG/Brave only if Serper returns <3 hits; \"serper\" skips Brave completely; \"rrf\" fuses active providers in parallel."
+            "description": "Provider strategy: \"waterfall\" (default) queries the primary search provider first and falls back only when results are sparse; \"rrf\" queries configured providers in parallel; \"serper\" uses only Serper."
           },
           "providers": {
             "type": "array",
@@ -6547,120 +6623,43 @@
                 "tavily"
               ]
             },
-            "description": "Optional explicit provider allowlist (e.g. [\"serper\"] or [\"serper\", \"searxng\"] to never call Brave)."
-          },
-          "include_domains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "includeDomains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Alias for include_domains."
-          },
-          "exclude_domains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "excludeDomains": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Alias for exclude_domains."
-          },
-          "time_range": {
-            "type": "string",
-            "enum": [
-              "day",
-              "week",
-              "month",
-              "year"
-            ]
-          },
-          "timeRange": {
-            "type": "string",
-            "enum": [
-              "day",
-              "week",
-              "month",
-              "year"
-            ],
-            "description": "Alias for time_range."
-          },
-          "max_age_ms": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "SERP cache max age in ms (default 86400000 = 24h; 0 bypasses cache)."
-          },
-          "maxAgeMs": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Alias for max_age_ms."
-          },
-          "include_raw_content": {
-            "type": "boolean",
-            "default": false,
-            "description": "Fetch & chunk top results politely via EdgeFetch HAOS agents."
-          },
-          "includeRawContent": {
-            "type": "boolean",
-            "description": "Alias for include_raw_content."
-          },
-          "chunks_per_source": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 10,
-            "default": 3
-          },
-          "chunksPerSource": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 10,
-            "description": "Alias for chunks_per_source."
-          },
-          "collections": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Optional private SEARCH D1 collection IDs to fuse."
+            "description": "Optional allowlist of search providers to use."
           },
           "collectionId": {
             "type": "string",
-            "description": "Optional single private SEARCH D1 collection ID to fuse."
+            "description": "Optional indexed collection ID to merge into search results."
+          },
+          "noCache": {
+            "type": "boolean",
+            "default": false,
+            "description": "Set true to bypass cached search results and fetch fresh results."
           }
         },
         "required": [
           "query"
         ],
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "McpTool_SearchCollectionInput": {
-        "title": "Search Indexed Collection (D1 FTS5) (MCP search_collection)",
-        "description": "Search a private SEARCH D1 FTS5 collection populated by crawl, scrape, or extract (e.g. collectionId=\"default\" or a crawlId `crw_...`) with BM25 ranking and snippets.",
+        "title": "Search Indexed Collection (MCP search_collection)",
+        "description": "Searches pages previously indexed into a collection by scrape, extract, or crawl, returning BM25 relevance-scored chunks (with compact query excerpts on long passages and empty hits when no terms match).",
         "type": "object",
         "properties": {
           "collectionId": {
             "type": "string",
             "default": "default",
-            "description": "Target collection ID (`default` or a custom / `crw_...` collectionId)."
+            "description": "Target collection ID (e.g. \"default\" or a crawl ID `crw_...`)."
           },
           "query": {
             "type": "string",
-            "description": "Keyword search query matched safely against FTS5 chunks."
+            "description": "Keyword query to match against indexed document chunks."
           },
           "limit": {
             "type": "integer",
             "minimum": 1,
             "maximum": 50,
-            "default": 10
+            "default": 10,
+            "description": "Maximum matching chunks to return (1..50)."
           }
         },
         "required": [
@@ -6670,26 +6669,26 @@
       },
       "McpTool_InteractInput": {
         "title": "Interact with Page in Sandboxed Headless Browser (MCP interact)",
-        "description": "Drive a sandboxed headless Chromium session on an edgefetch_fat (browser-v1) node (click, fill, press, scroll, wait, PNG screenshots) with SSRF CONNECT isolation, robots.txt pre-checks, and automatic stop on anti-bot challenges.",
+        "description": "Opens a page in a sandboxed headless browser and executes interactive steps (click, fill, type, press, select, scroll, wait, navigate), returning rendered Markdown, per-action URL/DOM change telemetry, warnings when clicks have no effect, optional screenshots, and a sessionId when keepSession is true.",
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "Initial public https:// URL (omit when resuming/closing sessionId)."
+            "description": "Initial public https:// URL (omit when resuming or closing an existing sessionId)."
           },
           "sessionId": {
             "type": "string",
-            "description": "Composite sessionId returned from a prior interact call with keepSession=true."
+            "description": "Session token returned from a prior interact call with keepSession=true."
           },
           "keepSession": {
             "type": "boolean",
             "default": false,
-            "description": "Keep the incognito browser tab open for follow-up interact calls."
+            "description": "Keep the isolated browser tab open for follow-up interact calls."
           },
           "closeSession": {
             "type": "boolean",
             "default": false,
-            "description": "Close the retained browser session after this turn."
+            "description": "Close an open browser session after this call."
           },
           "actions": {
             "type": "array",
@@ -6753,26 +6752,40 @@
           "waitForMs": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 15000
+            "maximum": 15000,
+            "description": "Milliseconds to wait for page state to settle."
           },
           "waitSelector": {
-            "type": "string"
+            "type": "string",
+            "description": "Optional CSS selector to wait for before extracting output."
+          },
+          "maxChars": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 500000,
+            "description": "Maximum Markdown characters to return in this call (returns totalChars, remainingChars, and nextOffset when truncated)."
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "description": "Character offset into the rendered Markdown for paging large pages."
           },
           "site": {
             "type": "string",
-            "description": "Optional specific edgefetch_fat site ID."
+            "description": "Optional browser-capable worker site ID."
           }
         },
         "additionalProperties": false
       },
       "McpTool_ReadArtifactInput": {
         "title": "Read Paged Crawl Artifact (MCP read_artifact)",
-        "description": "Read a slice of a stored R2 artifact by artifactId (64-char hex blobSha256 for raw fetch bodies, or md:<sha256> / format=\"markdown\" for derived scrape Markdown) using character offset + limit paging.",
+        "description": "Reads a character slice of a stored response artifact by artifactId (either a 64-character hex SHA-256 from fetch_url/fetch_batch/scrape, or an `md:<sha256>` markdownArtifactId from scrape) using offset and limit paging.",
         "type": "object",
         "properties": {
           "artifactId": {
             "type": "string",
-            "description": "64-character hex blobSha256 (from fetch_url/fetch_batch/scrape) OR md:<sha256> (markdownArtifactId from scrape)."
+            "description": "64-character hex SHA-256 artifact ID (from fetch_url/fetch_batch/scrape) OR `md:<sha256>` (markdownArtifactId from scrape)."
           },
           "format": {
             "type": "string",
@@ -6780,7 +6793,7 @@
               "raw",
               "markdown"
             ],
-            "description": "Optional slice format (\"raw\" default for blobSha256; \"markdown\" reads derived clean Markdown when available)."
+            "description": "Optional output format (\"raw\" default for raw artifacts; \"markdown\" reads derived clean Markdown when available)."
           },
           "retention": {
             "type": "string",
@@ -6801,7 +6814,7 @@
             "minimum": 1,
             "maximum": 262144,
             "default": 65536,
-            "description": "Max characters to return in this page."
+            "description": "Maximum characters to return in this page."
           }
         },
         "required": [
@@ -6810,8 +6823,8 @@
         "additionalProperties": false
       },
       "McpTool_JobsInput": {
-        "title": "Search & Extract Structured Job Postings (MCP jobs)",
-        "description": "One-call structured job search across official ATS boards (Greenhouse US/EU, Ashby, Lever US/EU, Workday CXS, Workable, Gem, Rippling, SmartRecruiters, company-domain -> ATS auto-discovery, and optional Built In): standardizes pay ({ min, max, currency, period, basis: \"base\"|\"ote\"|\"total\" }), workplaceType, and locations, deduplicates by (company, title), and filters by remote, locations, minBase, postedWithinDays, and exclude.",
+        "title": "Search & Verify Structured Job Postings (MCP jobs)",
+        "description": "Searches official company job boards (Greenhouse, Ashby, Lever, Workday, Workable, Gem, Rippling, SmartRecruiters, company-domain career page discovery, and Built In) or batch-verifies saved job URLs, returning normalized compensation, workplaceType, locations, and posting status.",
         "type": "object",
         "properties": {
           "query": {
@@ -6820,7 +6833,7 @@
           },
           "company": {
             "type": "string",
-            "description": "Optional company name or ATS org filter."
+            "description": "Optional company name or job-board organization slug."
           },
           "domains": {
             "type": "array",
@@ -6828,7 +6841,7 @@
               "type": "string"
             },
             "maxItems": 10,
-            "description": "Optional company domains (e.g. [\"cloudflare.com\", \"stripe.com\"]) to probe /careers and /jobs for automatic ATS board discovery across 16+ ATS platforms."
+            "description": "Optional company domains (e.g. [\"cloudflare.com\", \"stripe.com\"]) to probe /careers and /jobs for official job-board discovery."
           },
           "remote": {
             "type": "boolean",
@@ -6844,7 +6857,7 @@
           "minBase": {
             "type": "number",
             "minimum": 0,
-            "description": "Minimum annual base salary floor (ignores total-target-cash / OTE unless basis === \"base\")."
+            "description": "Minimum annual base salary filter."
           },
           "minBaseMode": {
             "type": "string",
@@ -6853,18 +6866,18 @@
               "ceiling"
             ],
             "default": "floor",
-            "description": "How minBase evaluates salary ranges: \"floor\" (default, pay.min >= minBase) or \"ceiling\" (pay.max >= minBase)."
+            "description": "How minBase compares against salary ranges: \"floor\" (pay.min >= minBase) or \"ceiling\" (pay.max >= minBase)."
           },
           "strictPay": {
             "type": "boolean",
             "default": false,
-            "description": "When true and minBase is set, drop jobs with unlisted pay instead of keeping them with payUnknown: true."
+            "description": "When true and minBase is set, exclude postings that do not list compensation."
           },
           "postedWithinDays": {
             "type": "integer",
             "minimum": 1,
             "maximum": 365,
-            "description": "Filter postings published within N days."
+            "description": "Keep postings published within the last N days."
           },
           "limit": {
             "type": "integer",
@@ -6875,12 +6888,12 @@
           "includeBuiltIn": {
             "type": "boolean",
             "default": true,
-            "description": "Also check Built In remote job search (disabled by default when company or domains is set)."
+            "description": "Include Built In job listings (disabled automatically when company or domains is set)."
           },
           "includePublicFeeds": {
             "type": "boolean",
             "default": false,
-            "description": "Opt-in to robots.txt-allowed public remote job feeds (We Work Remotely, Himalayas, Working Nomads)."
+            "description": "Opt in to public remote job feeds (We Work Remotely, Himalayas, Working Nomads)."
           },
           "mode": {
             "type": "string",
@@ -6888,7 +6901,7 @@
               "search",
               "verify"
             ],
-            "description": "Execution mode (\"search\" default, or \"verify\" to batch-check saved job posting URLs)."
+            "description": "Execution mode (\"search\" default, or \"verify\" to batch-check whether saved job URLs are still live)."
           },
           "verify": {
             "type": "array",
@@ -6896,7 +6909,7 @@
               "type": "string"
             },
             "maxItems": 50,
-            "description": "Optional list of saved https:// job posting URLs to batch-verify (\"live\" | \"closed\" | \"board_gone\" | \"unknown\") by grouping per ATS board."
+            "description": "Saved https:// job posting URLs to batch-verify (\"live\" | \"closed\" | \"board_gone\" | \"unknown\")."
           },
           "urls": {
             "type": "array",
@@ -6923,7 +6936,7 @@
               },
               "additionalProperties": false
             },
-            "description": "Optional list of already-applied roles to exclude."
+            "description": "Optional list of roles to exclude from results."
           },
           "target": {
             "type": "string",
@@ -6936,14 +6949,14 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "additionalProperties": false
       },
       "McpTool_FindExtractorsInput": {
         "title": "Search Built-In Keyless Site Adapters (MCP find_extractors)",
-        "description": "On-demand dynamic search across EdgeFetch’s 49+ keyless built-in site/API adapters (SEC EDGAR, YC, Polymarket, Ashby/Greenhouse/Lever/Workday/Workable/Gem/Rippling ATS, arXiv, OpenAlex, DOI/Crossref, ClinicalTrials, openFDA, PubChem, Socrata, CKAN, ArcGIS, Legistar, USAspending, NIST NVD CVEs, npm, PyPI, Crates, Shopify, etc.) without context bloat.",
+        "description": "Searches built-in keyless site and public-data adapters (such as SEC EDGAR, arXiv, OpenAlex, ClinicalTrials, openFDA, NIST NVD CVEs, npm, PyPI, Crates, job boards, and Shopify) and returns matching adapter URL patterns and capabilities.",
         "type": "object",
         "properties": {
           "query": {
@@ -6976,16 +6989,16 @@
       },
       "McpTool_CatalogInput": {
         "title": "Extract & Diff Full Storefront Catalog (MCP catalog)",
-        "description": "Polite, single-host sequential full-store e-commerce catalog extraction (Shopify /products.json and WooCommerce Store API) with robots.txt + Content-Signal compliance, 3-strikes 429 cooldown, shrink guard, variant-level snapshot diffing, and paged record filtering via catalogId.",
+        "description": "Extracts normalized product, variant, pricing, SKU, and availability records from a public Shopify or WooCommerce storefront (respecting robots.txt and rate limits), or pages and filters an existing catalog snapshot by catalogId.",
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "Public https:// storefront or collection URL (omit when polling/paging an existing catalogId)."
+            "description": "Public https:// storefront or collection URL (omit when paging an existing catalogId)."
           },
           "catalogId": {
             "type": "string",
-            "description": "Existing catalog run ID (`cat_...`) to poll status or page/filter normalized records."
+            "description": "Existing catalog run ID (`cat_...`) to poll status or page/filter product records."
           },
           "platform": {
             "type": "string",
@@ -6999,7 +7012,7 @@
           },
           "collection": {
             "type": "string",
-            "description": "Optional Shopify/WooCommerce collection or category slug."
+            "description": "Optional collection or category slug."
           },
           "fields": {
             "type": "string",
@@ -7008,7 +7021,7 @@
               "lean"
             ],
             "default": "full",
-            "description": "\"full\" includes descriptionText and images; \"lean\" keeps pricing/SKU/availability fields compact."
+            "description": "\"full\" includes descriptions and images; \"lean\" returns compact pricing, SKU, and availability fields."
           },
           "maxPages": {
             "type": "integer",
@@ -7020,12 +7033,12 @@
             "type": "integer",
             "minimum": 500,
             "maximum": 30000,
-            "description": "Polite pause between sequential pages in ms (>= 2000ms on Shopify)."
+            "description": "Polite pause between sequential pages in milliseconds."
           },
           "sync": {
             "type": "boolean",
             "default": true,
-            "description": "Set false to run asynchronously via waitUntil and poll with catalogId."
+            "description": "Set false to run in the background and poll with catalogId."
           },
           "offset": {
             "type": "integer",
@@ -7036,7 +7049,7 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 250,
-            "description": "Max records to return when paging an existing catalogId (default 50)."
+            "description": "Maximum records to return when paging an existing catalogId (default 50)."
           },
           "vendor": {
             "anyOf": [
@@ -7068,11 +7081,11 @@
           },
           "availableOnly": {
             "type": "boolean",
-            "description": "When true on catalogId record queries, keep only products with >=1 available variant."
+            "description": "When true, keep only products with at least one in-stock variant."
           },
           "query": {
             "type": "string",
-            "description": "Optional keyword search across title, handle, vendor, tags, and SKUs when paging catalogId."
+            "description": "Optional keyword filter across title, handle, vendor, tags, and SKUs when paging catalogId."
           },
           "target": {
             "type": "string",
@@ -7085,28 +7098,28 @@
           },
           "site": {
             "type": "string",
-            "description": "Optional standby site ID when target=\"agent\"."
+            "description": "Optional worker site ID when target=\"agent\"."
           }
         },
         "additionalProperties": false
       },
       "McpTool_AgentInput": {
         "title": "Autonomous Research & Structured Data Agent (MCP agent)",
-        "description": "Autonomous multi-step web research & structured JSON extraction agent: works with offline local LLMs (Ollama, LM Studio, vLLM) or online BYO-LLM (OpenAI, Anthropic, Gemini, OpenRouter, Workers AI), dynamically routing across all 49+ keyless adapters with zero 3-source cap and $0 Zero Data Retention.",
+        "description": "Runs a multi-step LLM-guided web research and semantic JSON-Schema extraction agent using either a configured server LLM or a caller-supplied BYO-LLM (OpenAI, Anthropic, Gemini, OpenRouter, Ollama, or Workers AI), returning synthesized answers or schema-validated JSON.",
         "type": "object",
         "properties": {
           "prompt": {
             "type": "string",
-            "description": "Natural-language goal or research question (URLs optional)."
+            "description": "Natural-language research question or extraction goal."
           },
           "agentId": {
             "type": "string",
-            "description": "Existing agt_... ID to poll status, fetch trace, or cancel."
+            "description": "Existing `agt_...` run ID to poll status, fetch trace spans, or cancel."
           },
           "trace": {
             "type": "boolean",
             "default": false,
-            "description": "Return ordered execution spans when polling agentId."
+            "description": "Return execution trace spans when polling agentId."
           },
           "cancel": {
             "type": "boolean",
@@ -7118,16 +7131,16 @@
             "items": {
               "type": "string"
             },
-            "description": "Optional seed public https:// URLs."
+            "description": "Optional starting public https:// URLs."
           },
           "strictConstrainToURLs": {
             "type": "boolean",
             "default": false,
-            "description": "Restrict navigation strictly to seed urls."
+            "description": "Restrict navigation strictly to the provided seed urls."
           },
           "schema": {
             "type": "object",
-            "description": "Optional JSON Schema for structured output validation."
+            "description": "Optional JSON Schema for semantic structured output validation."
           },
           "effort": {
             "type": "string",
@@ -7150,12 +7163,12 @@
           },
           "threadId": {
             "type": "string",
-            "description": "Optional prior agt_... threadId for multi-turn continuation."
+            "description": "Optional prior `agt_...` threadId for multi-turn follow-up."
           },
           "zeroDataRetention": {
             "type": "boolean",
             "default": false,
-            "description": "$0 native Zero Data Retention (skips D1/R2 persistence)."
+            "description": "When true, skips persisting run history or cached artifacts."
           },
           "safe": {
             "type": "boolean",
@@ -7177,7 +7190,7 @@
           },
           "llm": {
             "type": "object",
-            "description": "Optional BYO-LLM override (e.g. { provider: \"ollama\"|\"openai\"|\"anthropic\"|\"gemini\", model, baseUrl }).",
+            "description": "Optional BYO-LLM configuration (e.g. { provider: \"openai\"|\"anthropic\"|\"gemini\"|\"ollama\", model, baseUrl, apiKey }).",
             "properties": {
               "provider": {
                 "type": "string"
@@ -7198,7 +7211,7 @@
       },
       "McpTool_DiscoverMcpsInput": {
         "title": "Discover MCP Servers (Official Registry + Glama) (MCP discover_mcps)",
-        "description": "Search the Official Model Context Protocol Registry (registry.modelcontextprotocol.io) and Glama MCP Directory (glama.ai) to discover remote Streamable HTTP / SSE and local MCP servers, required auth headers, environment variables, and associated web domains.",
+        "description": "Searches the Official Model Context Protocol Registry and Glama directory to find remote and local MCP servers, returning endpoint URLs, authentication requirements, and associated domains.",
         "type": "object",
         "properties": {
           "query": {
@@ -7208,7 +7221,7 @@
           "remoteOnly": {
             "type": "boolean",
             "default": false,
-            "description": "When true, keep only servers advertising remote streamable-http or sse endpoints."
+            "description": "When true, return only servers offering remote HTTP or SSE endpoints."
           },
           "limit": {
             "type": "integer",
@@ -7222,7 +7235,7 @@
       },
       "McpTool_QueryMcpInput": {
         "title": "Query Connected Federated MCP Server (MCP query_mcp)",
-        "description": "List your user-isolated connected downstream MCP servers, inspect their cached or live tool schemas on demand (zero top-level context bloat), or execute an authenticated JSON-RPC tools/call against a connected remote MCP server.",
+        "description": "Lists your connected downstream MCP servers, inspects their available tool schemas on demand, or invokes a tool on a connected downstream MCP server.",
         "type": "object",
         "properties": {
           "action": {
@@ -7233,11 +7246,11 @@
               "call_tool"
             ],
             "default": "list_connected",
-            "description": "\"list_connected\" lists your connected MCPs and domains; \"list_tools\" lists tools on server; \"call_tool\" executes tool on server."
+            "description": "\"list_connected\" lists connected MCP servers; \"list_tools\" inspects tools on a server; \"call_tool\" executes a tool on a server."
           },
           "server": {
             "type": "string",
-            "description": "Connected MCP server slug or associated domain (required for \"list_tools\" and \"call_tool\")."
+            "description": "Connected MCP server slug or domain (required for \"list_tools\" and \"call_tool\")."
           },
           "tool": {
             "type": "string",
@@ -7250,7 +7263,7 @@
           "refresh": {
             "type": "boolean",
             "default": false,
-            "description": "When true on action=\"list_tools\", refreshes tools/list live from the remote MCP endpoint."
+            "description": "When true on action=\"list_tools\", fetches fresh tool definitions from the remote MCP server."
           }
         },
         "additionalProperties": false

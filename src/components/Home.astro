@@ -195,9 +195,9 @@ const refusals = [
 edgefetch update
 
 <span class="c"># or verify manually with OpenSSL + GitHub SLSA provenance</span>
-openssl pkeyutl -verify -pubin -inkey release-signing-pub.pem \
+openssl pkeyutl -verify -pubin -inkey keys/release-signing-pub.pem \
   -rawin -in checksums.txt -sigfile checksums.txt.sig
-gh attestation verify edgefetch_2.7.0_linux_amd64.tar.gz \
+gh attestation verify edgefetch_2.7.1_linux_amd64.tar.gz \
   --repo bartrumb/edgefetch</code></pre>
 	</section>
 

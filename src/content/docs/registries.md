@@ -25,7 +25,7 @@ This page is kept current. Nothing is marked live until the listing is active.
 
 | Directory | Kind | Status |
 |---|---|---|
-| [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=edgefetch) | MCP | **Live (`active`, `v2.7.0`)** as `io.github.bartrumb/edgefetch`, published automatically via GitHub OIDC on every signed release |
+| [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=edgefetch) | MCP | **Live (`active`, `v2.7.1`)** as `io.github.bartrumb/edgefetch`, published automatically via GitHub OIDC on every signed release |
 | [Glama](https://glama.ai/mcp/servers) | MCP | `glama.json` published in repository; searchable directly inside `/admin` and `discover_mcps` |
 | [PulseMCP](https://www.pulsemcp.com) and [mcp.so](https://mcp.so) | MCP | Planned |
 | [Known Agents](https://knownagents.com) | Bot directory | Planned, as a user-triggered fetcher that does not train models |
