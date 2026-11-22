@@ -41,7 +41,7 @@ const refusals = [
 			</p>
 		</div>
 
-		<figure class="ef-trace">
+		<figure class="ef-trace" id="ef-trace">
 			<div class="ef-trace__cmd">
 				<span class="ef-prompt" aria-hidden="true">$</span>
 				<code>edgefetch scrape https://go.dev/doc/effective_go</code>
@@ -52,7 +52,10 @@ const refusals = [
 						<li style={`--i:${i}`}>
 							<span class="ef-trace__step">{t.step}</span>
 							<span class="ef-trace__detail">{t.detail}</span>
-							<span class="ef-trace__time">{t.time}</span>
+							<span class="ef-trace__time">
+								{t.time && <span class="ef-trace__bar" style={`--f:${(parseInt(t.time) / 64).toFixed(3)}`} aria-hidden="true"></span>}
+								{t.time}
+							</span>
 						</li>
 					))
 				}
@@ -92,7 +95,7 @@ const refusals = [
 			</p>
 		</div>
 
-		<svg class="ef-arch" viewBox="0 0 760 250" role="img" aria-labelledby="ef-arch-desc">
+		<svg class="ef-arch" id="ef-arch" viewBox="0 0 800 250" role="img" aria-labelledby="ef-arch-desc">
 			<desc id="ef-arch-desc">
 				AI agents connect to the hub over MCP. Three worker nodes at home open outbound
 				WebSocket connections to the hub. No inbound connections reach the home network.
@@ -101,18 +104,22 @@ const refusals = [
 				<marker id="ef-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
 					<path d="M0 0L10 5L0 10z" fill="currentColor"></path>
 				</marker>
+				<filter id="ef-pglow" x="-150%" y="-150%" width="400%" height="400%">
+					<feGaussianBlur stdDeviation="3.5" result="b"></feGaussianBlur>
+					<feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+				</filter>
 			</defs>
-			<g class="ef-arch__box">
+			<g class="ef-arch__box" id="ef-agents">
 				<rect x="10" y="95" width="170" height="60" rx="8"></rect>
 				<text x="95" y="122">Claude Code, Cursor</text>
 				<text x="95" y="141" class="ef-arch__sub">your agents</text>
 			</g>
-			<g class="ef-arch__box ef-arch__box--hub">
+			<g class="ef-arch__box ef-arch__box--hub" id="ef-hub">
 				<rect x="295" y="80" width="170" height="90" rx="8"></rect>
 				<text x="380" y="118">Hub</text>
 				<text x="380" y="139" class="ef-arch__sub">MCP, queue and cache</text>
 			</g>
-			<path class="ef-arch__line" d="M180 125H291" marker-end="url(#ef-arrow)"></path>
+			<path class="ef-arch__line" id="ef-mcp" d="M180 125H291" marker-end="url(#ef-arrow)"></path>
 			<text x="236" y="114" class="ef-arch__label">MCP</text>
 
 			<rect class="ef-arch__home" x="560" y="10" width="190" height="230" rx="10"></rect>
@@ -122,17 +129,26 @@ const refusals = [
 					{ y: 50, t: 'Raspberry Pi' },
 					{ y: 110, t: 'Home Assistant' },
 					{ y: 170, t: 'Docker on a NAS' },
-				].map((n) => (
-					<g class="ef-arch__box">
+				].map((n, i) => (
+					<g class="ef-arch__box ef-arch__node" id={`ef-node${i}`}>
 						<rect x="580" y={n.y} width="150" height="44" rx="7" />
 						<text x="655" y={n.y + 27}>{n.t}</text>
 					</g>
 				))
 			}
-			<path class="ef-arch__line ef-arch__line--out" d="M580 72C520 72 520 110 469 115" marker-end="url(#ef-arrow)"></path>
-			<path class="ef-arch__line ef-arch__line--out" d="M580 132H469" marker-end="url(#ef-arrow)"></path>
-			<path class="ef-arch__line ef-arch__line--out" d="M580 192C520 192 520 150 469 145" marker-end="url(#ef-arrow)"></path>
+			<path class="ef-arch__line ef-arch__line--out" id="ef-sock0" d="M580 72C520 72 520 110 469 115" marker-end="url(#ef-arrow)"></path>
+			<path class="ef-arch__line ef-arch__line--out" id="ef-sock1" d="M580 132H469" marker-end="url(#ef-arrow)"></path>
+			<path class="ef-arch__line ef-arch__line--out" id="ef-sock2" d="M580 192C520 192 520 150 469 145" marker-end="url(#ef-arrow)"></path>
 			<text x="655" y="232" class="ef-arch__label">outbound WSS only</text>
+
+			<!-- moving parts (hidden until the diagram is on screen; absent with reduced motion) -->
+			<g class="ef-arch__fx" aria-hidden="true">
+				<circle class="ef-pk" id="ef-pk-req" r="6.5" opacity="0"></circle>
+				<circle class="ef-pk" id="ef-pk-job" r="6.5" opacity="0"></circle>
+				<circle class="ef-pk ef-pk--res" id="ef-pk-res" r="8" opacity="0"></circle>
+				<circle class="ef-pk ef-pk--in" id="ef-pk-in" r="6.5" opacity="0"></circle>
+				<circle class="ef-pk-ring" id="ef-pk-ring" cx="752" cy="150" r="6" opacity="0"></circle>
+			</g>
 		</svg>
 		<p class="ef-more"><a href="/concepts/architecture/">How the hub and workers fit together</a></p>
 	</section>
@@ -167,6 +183,105 @@ gh attestation verify edgefetch_&lt;version&gt;_linux_amd64.tar.gz \
 		</ul>
 	</section>
 </div>
+
+<script>
+	// Diagram motion. Opt-in: without JavaScript, or with reduced motion, the diagrams stay static and complete.
+	const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const trace = document.getElementById('ef-trace');
+	const arch = document.getElementById('ef-arch') as SVGSVGElement | null;
+
+	if (!calm && trace) {
+		// The trace replays once, when you scroll to it.
+		trace.classList.add('ef-anim');
+		new IntersectionObserver(
+			(entries, io) => {
+				if (entries.some((e) => e.isIntersecting)) {
+					trace.classList.add('is-live');
+					io.disconnect();
+				}
+			},
+			{ threshold: 0.45 },
+		).observe(trace);
+	}
+
+	if (!calm && arch) {
+		const $ = <T extends Element>(id: string) => arch.querySelector<T>('#' + id)!;
+		const mcp = $<SVGPathElement>('ef-mcp');
+		const socks = [0, 1, 2].map((i) => $<SVGPathElement>('ef-sock' + i));
+		const nodes = [0, 1, 2].map((i) => $<SVGGElement>('ef-node' + i));
+		const hub = $<SVGGElement>('ef-hub');
+		const req = $<SVGCircleElement>('ef-pk-req');
+		const job = $<SVGCircleElement>('ef-pk-job');
+		const res = $<SVGCircleElement>('ef-pk-res');
+		const inb = $<SVGCircleElement>('ef-pk-in');
+		const ring = $<SVGCircleElement>('ef-pk-ring');
+		const clamp = (v: number) => Math.min(1, Math.max(0, v));
+		const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a));
+		const ease = (x: number) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+		const at = (p: SVGPathElement, u: number) => p.getPointAtLength(p.getTotalLength() * u);
+		const place = (c: SVGCircleElement, pt: DOMPoint | null, o: number) => {
+			if (pt) {
+				c.setAttribute('cx', pt.x.toFixed(1));
+				c.setAttribute('cy', pt.y.toFixed(1));
+			}
+			c.setAttribute('opacity', o.toFixed(2));
+		};
+
+		const CYCLE = 5200; // ms for one request's round trip, including a short rest
+		let start = 0;
+		let raf = 0;
+
+		function frame(now: number) {
+			if (!start) start = now;
+			const elapsed = now - start;
+			const loop = Math.floor(elapsed / CYCLE);
+			const t = (elapsed % CYCLE) / CYCLE;
+			const k = loop % 3; // a different home node each loop
+
+			// 1. agent -> hub over MCP
+			const a = ease(seg(t, 0.02, 0.16));
+			place(req, at(mcp, a), t > 0.02 && t < 0.17 ? 1 : 0);
+			// 2. hub -> node, down the socket that node opened (path runs node -> hub, so walk it backwards)
+			const b = ease(seg(t, 0.2, 0.36));
+			place(job, at(socks[k], 1 - b), t > 0.2 && t < 0.37 ? 1 : 0);
+			// 3. node -> hub with the page, then hub -> agent
+			const c = ease(seg(t, 0.52, 0.68));
+			const d = ease(seg(t, 0.7, 0.84));
+			if (t < 0.69) place(res, at(socks[k], c), t > 0.52 ? 1 : 0);
+			else place(res, at(mcp, 1 - d), t < 0.85 ? 1 : 0);
+
+			hub.classList.toggle('is-hot', (t > 0.15 && t < 0.22) || (t > 0.66 && t < 0.72));
+			nodes.forEach((n, i) => n.classList.toggle('is-hot', i === k && t > 0.35 && t < 0.54));
+
+			// every other loop: something from the internet tries to get in, and stops at the edge
+			if (loop % 2 === 1) {
+				const e = ease(seg(t, 0.3, 0.46));
+				place(inb, new DOMPoint(796 - e * 40, 150), t > 0.3 && t < 0.5 ? 1 - seg(t, 0.46, 0.5) : 0);
+				const r = seg(t, 0.46, 0.62);
+				ring.setAttribute('r', (6 + r * 22).toFixed(1));
+				ring.setAttribute('opacity', r > 0 && r < 1 ? (1 - r).toFixed(2) : '0');
+			} else {
+				inb.setAttribute('opacity', '0');
+				ring.setAttribute('opacity', '0');
+			}
+			raf = requestAnimationFrame(frame);
+		}
+
+		arch.classList.add('ef-anim');
+		new IntersectionObserver(
+			(entries) => {
+				const on = entries.some((e) => e.isIntersecting);
+				arch.classList.toggle('is-live', on);
+				if (on && !raf) raf = requestAnimationFrame(frame);
+				if (!on && raf) {
+					cancelAnimationFrame(raf);
+					raf = 0;
+				}
+			},
+			{ threshold: 0.2 },
+		).observe(arch);
+	}
+</script>
 
 <style>
 	.ef-home {
@@ -244,12 +359,10 @@ gh attestation verify edgefetch_&lt;version&gt;_linux_amd64.tar.gz \
 	}
 	.ef-trace__steps li {
 		display: grid;
-		grid-template-columns: 7.5rem 1fr auto;
+		grid-template-columns: 7.5rem 1fr 9.5rem;
 		gap: 1rem;
 		padding: 0.35rem 1.1rem;
 		margin: 0;
-		animation: ef-step 0.35s ease-out both;
-		animation-delay: calc(var(--i) * 140ms + 200ms);
 	}
 	.ef-trace__step {
 		color: #3fc6e0;
@@ -267,15 +380,78 @@ gh attestation verify edgefetch_&lt;version&gt;_linux_amd64.tar.gz \
 		font-family: var(--sl-font);
 		font-size: 0.8125rem;
 	}
+	.ef-trace__time {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.6rem;
+		white-space: nowrap;
+	}
+	.ef-trace__bar {
+		display: block;
+		width: calc(5.5rem * var(--f));
+		min-width: 0.5rem;
+		height: 6px;
+		border-radius: 3px;
+		background: #3fc6e0;
+		opacity: 0.75;
+		transform-origin: left center;
+	}
+
+	/* Trace replay (only when the script opts in with .ef-anim and the trace scrolls into view) */
+	.ef-trace.ef-anim .ef-trace__cmd code {
+		display: inline-block;
+		vertical-align: bottom;
+		overflow: hidden;
+		white-space: nowrap;
+		width: 0;
+		border-right: 2px solid #3fc6e0;
+	}
+	.ef-trace.ef-anim.is-live .ef-trace__cmd code {
+		animation:
+			ef-type 1.1s steps(49, end) forwards,
+			ef-caret 0.55s step-end 4 forwards;
+	}
+	.ef-trace.ef-anim .ef-trace__steps li {
+		opacity: 0;
+	}
+	.ef-trace.ef-anim.is-live .ef-trace__steps li {
+		animation: ef-step 0.4s ease-out both;
+		animation-delay: calc(var(--i) * 230ms + 1.25s);
+	}
+	.ef-trace.ef-anim .ef-trace__bar {
+		transform: scaleX(0);
+	}
+	.ef-trace.ef-anim.is-live .ef-trace__bar {
+		animation: ef-bar 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+		animation-delay: calc(var(--i) * 230ms + 1.4s);
+	}
+	@keyframes ef-type {
+		to {
+			width: 49ch; /* one past the 48-character command, so the caret rests after it */
+		}
+	}
+	@keyframes ef-caret {
+		50% {
+			border-right-color: transparent;
+		}
+		to {
+			border-right-color: transparent;
+		}
+	}
 	@keyframes ef-step {
 		from {
 			opacity: 0;
-			transform: translateY(4px);
+			transform: translateX(-6px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
 		}
 	}
-	@media (prefers-reduced-motion: reduce) {
-		.ef-trace__steps li {
-			animation: none;
+	@keyframes ef-bar {
+		to {
+			transform: scaleX(1);
 		}
 	}
 
@@ -346,6 +522,52 @@ gh attestation verify edgefetch_&lt;version&gt;_linux_amd64.tar.gz \
 	.ef-arch__line--out {
 		stroke: #3fc6e0;
 		color: #3fc6e0;
+	}
+
+	/* Architecture motion */
+	.ef-arch__fx {
+		display: none;
+	}
+	.ef-arch.ef-anim .ef-arch__fx {
+		display: inline;
+	}
+	.ef-arch.ef-anim .ef-arch__line--out {
+		/* the sockets read as held open: a slow dash drifting outward, node to hub */
+		stroke-dasharray: 7 5;
+		animation: ef-flow 1.6s linear infinite;
+		animation-play-state: paused;
+	}
+	.ef-arch.ef-anim.is-live .ef-arch__line--out {
+		animation-play-state: running;
+	}
+	@keyframes ef-flow {
+		to {
+			stroke-dashoffset: -24;
+		}
+	}
+	/* no CSS opacity here: in SVG it would override the attribute the script animates */
+	.ef-pk {
+		fill: #3fc6e0;
+		filter: url(#ef-pglow);
+	}
+	.ef-pk--res {
+		fill: #a8ecf8;
+	}
+	.ef-pk--in {
+		fill: #f2a93b;
+	}
+	.ef-pk-ring {
+		fill: none;
+		stroke: #f2a93b;
+		stroke-width: 2;
+	}
+	.ef-arch__box rect {
+		transition: stroke 0.3s ease, fill 0.3s ease;
+	}
+	.ef-arch__box.is-hot rect {
+		stroke: #3fc6e0;
+		stroke-width: 2;
+		fill: color-mix(in srgb, #3fc6e0 14%, var(--sl-color-gray-6));
 	}
 	.ef-more {
 		margin-top: 1rem;
