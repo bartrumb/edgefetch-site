@@ -1,0 +1,577 @@
+---
+// Pinned, scroll-scrubbed story under the hero: four chapters drawn as one diagram.
+// Scrolling drives every animation (and reverses it); nothing autoplays.
+const chapters = [
+	{
+		title: 'It asks before every room.',
+		body: 'robots.txt is checked before the first request and again on every redirect hop. A “no” ends the fetch.',
+	},
+	{
+		title: 'Nothing at home faces the internet.',
+		body: 'Workers on your Pi, NAS or Home Assistant dial out to the hub. No port forwarding, and it works behind CGNAT.',
+	},
+	{
+		title: 'It checks the address as it dials.',
+		body: 'The resolved IP is checked inside the dialer, right before connect, so DNS rebinding can’t reach your router.',
+	},
+	{
+		title: 'Pages in, clean Markdown out.',
+		body: 'Navigation, scripts and styling are stripped, so your agent reads the article instead of the page around it.',
+	},
+];
+const doors = [
+	{ x: 110, label: 'site-a.com/news' },
+	{ x: 340, label: 'site-b.com/archive' },
+	{ x: 570, label: 'tracker.example/r' },
+];
+const nodes = [
+	{ x: 80, label: 'Raspberry Pi' },
+	{ x: 310, label: 'Home Assistant' },
+	{ x: 540, label: 'NAS' },
+];
+// page.html: true = content line, false = noise (nav, scripts, styling)
+const htmlLines = [
+	[false, 220], [false, 150], [true, 240], [false, 190], [true, 250], [true, 210], [false, 170],
+	[true, 245], [false, 120], [true, 200], [false, 230], [true, 180], [false, 140], [false, 200],
+];
+---
+
+<section class="ef-story not-content" data-ch="0" aria-label="How EdgeFetch fetches">
+	<div class="ef-story__pin">
+		<div class="ef-story__inner">
+			<div class="ef-story__copy">
+				<ol class="ef-story__rail" aria-hidden="true">
+					{chapters.map((_, i) => <li><span style={`--i:${i}`}></span></li>)}
+				</ol>
+				<div class="ef-story__texts">
+					{
+						chapters.map((c, i) => (
+							<div class="ef-story__text" data-i={i}>
+								<h2>{c.title}</h2>
+								<p>{c.body}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<svg class="ef-story__stage" viewBox="0 0 800 520" role="img" aria-labelledby="ef-story-desc">
+				<desc id="ef-story-desc">
+					An animated diagram in four steps. A request checks robots.txt at every door and stops at a
+					disallowed one. Home worker nodes connect out to a hub while an inbound connection is
+					blocked. A gate checks the resolved IP address as the connection is made. An HTML page is
+					reduced to clean Markdown.
+				</desc>
+				<defs>
+					<filter id="ef-glow" x="-100%" y="-100%" width="300%" height="300%">
+						<feGaussianBlur stdDeviation="5" result="b"></feGaussianBlur>
+						<feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+					</filter>
+				</defs>
+
+				<!-- 1. Doors and robots.txt -->
+				<g class="ef-c" id="ef-c1">
+					<path class="ef-floor" d="M30 432H770"></path>
+					{
+						doors.map((d, i) => (
+							<g>
+								<rect class="ef-frame" x={d.x} y="232" width="120" height="200" rx="12"></rect>
+								<rect class="ef-panel" id={`ef-door${i}`} x={d.x + 6} y="238" width="108" height="194" rx="8"></rect>
+								<text class="ef-mono ef-dim" x={d.x + 60} y="466">{d.label}</text>
+								<g class="ef-chip" id={`ef-chip${i}`} opacity="0">
+									<rect x={d.x - 30} y="168" width="180" height="40" rx="20"></rect>
+									<text class="ef-mono" x={d.x + 60} y="194">
+										robots.txt <tspan class={i === 2 ? 'ef-no' : 'ef-ok'}>{i === 2 ? 'disallow' : 'allow'}</tspan>
+									</text>
+								</g>
+							</g>
+						))
+					}
+					<path class="ef-arc" id="ef-arc0" d="M232 300Q285 254 338 300"></path>
+					<path class="ef-arc" id="ef-arc1" d="M462 300Q515 254 568 300"></path>
+					<text class="ef-mono ef-ok" id="ef-302a" x="285" y="262" opacity="0">302</text>
+					<text class="ef-mono ef-ok" id="ef-302b" x="515" y="262" opacity="0">302</text>
+					<circle class="ef-ring" id="ef-ring1" cx="630" cy="334" r="44" opacity="0"></circle>
+					<circle class="ef-packet" id="ef-pk1" cx="40" cy="404" r="11"></circle>
+				</g>
+
+				<!-- 2. Dial out -->
+				<g class="ef-c" id="ef-c2">
+					<rect class="ef-hub" x="300" y="44" width="200" height="78" rx="18"></rect>
+					<text class="ef-big" x="400" y="80">hub</text>
+					<text class="ef-mono ef-dim" x="400" y="104">in the cloud</text>
+					<path class="ef-fw" d="M30 274H770"></path>
+					<text class="ef-mono ef-dim ef-left" x="32" y="262">your router</text>
+					{
+						nodes.map((n, i) => (
+							<g>
+								<path class="ef-link" id={`ef-link${i}`} d={`M${n.x + 90} 384C${n.x + 90} 250 ${360 + i * 40} 250 ${360 + i * 40} 124`}></path>
+								<rect class="ef-node" x={n.x} y="384" width="180" height="64" rx="14"></rect>
+								<text class="ef-label" x={n.x + 90} y="422">{n.label}</text>
+								<circle class="ef-packet ef-flow" id={`ef-flow${i}`} r="7" opacity="0"></circle>
+							</g>
+						))
+					}
+					<text class="ef-mono ef-ok ef-left" id="ef-outlbl" x="560" y="210" opacity="0">outbound only</text>
+					<circle class="ef-packet ef-bad" id="ef-in" cx="716" cy="10" r="10" opacity="0"></circle>
+					<circle class="ef-ring" id="ef-ring2" cx="716" cy="274" r="36" opacity="0"></circle>
+					<text class="ef-mono ef-no" id="ef-inlbl" x="716" y="330" opacity="0">inbound blocked</text>
+				</g>
+
+				<!-- 3. Dial-time check -->
+				<g class="ef-c" id="ef-c3">
+					<text class="ef-mono ef-dim ef-left" x="40" y="150">harmless-site.example resolves to</text>
+					<g id="ef-dns-pub">
+						<rect class="ef-chipbox" x="40" y="166" width="300" height="44" rx="22"></rect>
+						<text class="ef-mono" x="190" y="194">93.184.216.34 <tspan class="ef-ok">public</tspan></text>
+					</g>
+					<g id="ef-dns-priv" opacity="0">
+						<rect class="ef-chipbox ef-chipbox--bad" x="40" y="166" width="300" height="44" rx="22"></rect>
+						<text class="ef-mono" x="190" y="194">192.168.1.1 <tspan class="ef-no">private</tspan></text>
+					</g>
+					<path class="ef-road" d="M30 330H770"></path>
+					<text class="ef-mono ef-ok" x="480" y="224">checked at connect()</text>
+					<rect class="ef-post" x="452" y="262" width="12" height="100" rx="4"></rect>
+					<rect class="ef-post" x="500" y="262" width="12" height="100" rx="4"></rect>
+					<rect class="ef-bar" id="ef-bar" x="440" y="236" width="84" height="16" rx="8"></rect>
+					<text class="ef-mono ef-dim" x="690" y="380">public web</text>
+					<circle class="ef-packet" id="ef-pkA" cx="40" cy="330" r="11"></circle>
+					<circle class="ef-packet" id="ef-pkB" cx="40" cy="330" r="11" opacity="0"></circle>
+					<circle class="ef-ring" id="ef-ring3" cx="430" cy="330" r="40" opacity="0"></circle>
+				</g>
+
+				<!-- 4. HTML to Markdown -->
+				<g class="ef-c" id="ef-c4">
+					<rect class="ef-doc" x="50" y="56" width="310" height="384" rx="14"></rect>
+					<text class="ef-mono ef-dim" x="205" y="40">page.html</text>
+					<rect class="ef-doc ef-doc--md" id="ef-md" x="440" y="56" width="310" height="384" rx="14"></rect>
+					<text class="ef-mono ef-ok" x="595" y="40">page.md</text>
+					{
+						htmlLines.map(([content, w], i) => (
+							<rect class={content ? 'ef-line ef-line--content' : 'ef-line ef-line--noise'} data-i={i} x="76" y={84 + i * 24} width={w} height="10" rx="5"></rect>
+						))
+					}
+					<text class="ef-mono ef-dim ef-left" x="50" y="486">tokens</text>
+					<rect class="ef-tokbg" x="126" y="474" width="624" height="14" rx="7"></rect>
+					<rect class="ef-tok" id="ef-tok" x="126" y="474" width="624" height="14" rx="7"></rect>
+				</g>
+			</svg>
+		</div>
+	</div>
+</section>
+
+<script>
+	const story = document.querySelector<HTMLElement>('.ef-story');
+	if (story) {
+		const $ = <T extends Element>(id: string) => story.querySelector<T>('#' + id)!;
+		const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+		const clamp = (v: number) => Math.min(1, Math.max(0, v));
+		const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a));
+		const ease = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+		const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+		const set = (el: Element, attrs: Record<string, string | number>) => {
+			for (const k in attrs) el.setAttribute(k, String(attrs[k]));
+		};
+		const pulse = (el: Element, t: number, r0: number, r1: number) =>
+			set(el, { r: lerp(r0, r1, t), opacity: t > 0 && t < 1 ? 1 - t : 0 });
+
+		const groups = [1, 2, 3, 4].map((n) => $<SVGGElement>('ef-c' + n));
+		const prep = (p: SVGGeometryElement) => {
+			const L = p.getTotalLength();
+			p.style.strokeDasharray = `${L}`;
+			return L;
+		};
+		const arcs = [0, 1].map((i) => $<SVGPathElement>('ef-arc' + i));
+		const arcLen = arcs.map(prep);
+		const links = [0, 1, 2].map((i) => $<SVGPathElement>('ef-link' + i));
+		const linkLen = links.map(prep);
+		const lines = [...story.querySelectorAll<SVGRectElement>('.ef-line')];
+		const contentIdx = lines.filter((l) => l.classList.contains('ef-line--content'));
+
+		function door(t: number) {
+			const pk = $('ef-pk1');
+			// packet x across the three doors: stop, check, open, pass
+			const stops: [number, number, number, number][] = [
+				[0.0, 0.12, 40, 88],
+				[0.26, 0.42, 88, 318],
+				[0.56, 0.7, 318, 548],
+			];
+			let x = 40;
+			for (const [a, b, x0, x1] of stops) if (t >= a) x = lerp(x0, x1, ease(seg(t, a, b)));
+			const back = ease(seg(t, 0.8, 0.9));
+			x -= back * 34;
+			set(pk, { cx: x });
+			pk.classList.toggle('ef-bad', t > 0.78);
+			[0, 1, 2].forEach((i) => {
+				const show = seg(t, [0.12, 0.42, 0.7][i], [0.18, 0.48, 0.76][i]);
+				const chip = $('ef-chip' + i);
+				chip.setAttribute('opacity', String(show));
+				chip.setAttribute('transform', `translate(0 ${(1 - show) * 10})`);
+			});
+			[0, 1].forEach((i) => {
+				const open = ease(seg(t, [0.2, 0.5][i], [0.26, 0.56][i]));
+				$('ef-door' + i).setAttribute('width', String(lerp(108, 8, open)));
+			});
+			arcs.forEach((a, i) => {
+				const d = seg(t, [0.26, 0.56][i], [0.36, 0.66][i]);
+				a.style.strokeDashoffset = `${arcLen[i] * (1 - d)}`;
+				$('ef-302' + 'ab'[i]).setAttribute('opacity', String(d));
+			});
+			pulse($('ef-ring1'), seg(t, 0.78, 0.94), 26, 70);
+		}
+
+		function dialOut(t: number) {
+			links.forEach((l, i) => {
+				const d = ease(seg(t, 0.08 + i * 0.06, 0.34 + i * 0.06));
+				l.style.strokeDashoffset = `${linkLen[i] * (1 - d)}`;
+				const f = $<SVGCircleElement>('ef-flow' + i);
+				if (t > 0.4) {
+					const u = (t * 2.6 + i / 3) % 1; // packets keep flowing up as you scroll
+					const pt = l.getPointAtLength(linkLen[i] * u);
+					set(f, { cx: pt.x, cy: pt.y, opacity: Math.min(1, (t - 0.4) * 10) });
+				} else f.setAttribute('opacity', '0');
+			});
+			$('ef-outlbl').setAttribute('opacity', String(seg(t, 0.38, 0.46)));
+			const fall = ease(seg(t, 0.55, 0.72));
+			const inn = $('ef-in');
+			set(inn, { cy: lerp(10, 262, fall) - ease(seg(t, 0.72, 0.84)) * 60, opacity: t > 0.55 ? 1 - seg(t, 0.78, 0.9) : 0 });
+			pulse($('ef-ring2'), seg(t, 0.72, 0.88), 18, 60);
+			$('ef-inlbl').setAttribute('opacity', String(seg(t, 0.74, 0.82)));
+		}
+
+		function dialCheck(t: number) {
+			const a = ease(seg(t, 0.05, 0.36));
+			set($('ef-pkA'), { cx: lerp(40, 760, a), opacity: t < 0.36 ? 1 : 0 });
+			const flip = seg(t, 0.4, 0.48);
+			$('ef-dns-pub').setAttribute('opacity', String(1 - flip));
+			$('ef-dns-priv').setAttribute('opacity', String(flip));
+			const b = ease(seg(t, 0.48, 0.72));
+			set($('ef-pkB'), { cx: lerp(40, 418, b), opacity: t > 0.48 ? 1 - seg(t, 0.84, 0.94) : 0 });
+			$('ef-pkB').classList.toggle('ef-bad', t > 0.7);
+			const drop = ease(seg(t, 0.66, 0.72));
+			const bar = $('ef-bar');
+			set(bar, { y: lerp(236, 300, drop) });
+			bar.classList.toggle('ef-bar--shut', drop > 0.5);
+			pulse($('ef-ring3'), seg(t, 0.72, 0.88), 20, 64);
+		}
+
+		function markdown(t: number) {
+			const strip = ease(seg(t, 0.08, 0.42));
+			lines.forEach((l) => {
+				if (l.classList.contains('ef-line--noise')) {
+					l.style.opacity = String(1 - strip);
+					l.style.transform = `scaleX(${1 - strip * 0.9})`;
+				}
+			});
+			const move = ease(seg(t, 0.4, 0.78));
+			contentIdx.forEach((l, k) => {
+				const i = Number(l.dataset.i);
+				const dy = 84 + k * 30 - (84 + i * 24);
+				l.style.transform = `translate(${move * 390}px, ${move * dy}px)`;
+				l.classList.toggle('ef-line--clean', move > 0.5);
+			});
+			$('ef-tok').setAttribute('width', String(lerp(624, 70, ease(seg(t, 0.3, 0.8)))));
+		}
+
+		const draw = [door, dialOut, dialCheck, markdown];
+		let ticking = false;
+
+		function render() {
+			ticking = false;
+			const r = story!.getBoundingClientRect();
+			const pin = story!.querySelector<HTMLElement>('.ef-story__pin')!;
+			const travel = Math.max(1, story!.offsetHeight - pin.offsetHeight);
+			const p = clamp(-r.top / travel);
+			const n = groups.length;
+			const pos = Math.min(n - 0.0001, p * n);
+			const ch = Math.floor(pos);
+			const local = reduce.matches ? 1 : pos - ch;
+			story!.dataset.ch = String(ch);
+			story!.style.setProperty('--p', String(p));
+			groups.forEach((g, i) => {
+				// cross-fade between chapters at the boundaries
+				const vis = i === ch ? 1 : 0;
+				g.style.opacity = String(vis);
+				g.style.transform = `translateY(${(i - ch) * 14}px)`;
+			});
+			draw[ch](local);
+		}
+		const onScroll = () => {
+			if (!ticking) {
+				ticking = true;
+				requestAnimationFrame(render);
+			}
+		};
+		addEventListener('scroll', onScroll, { passive: true });
+		addEventListener('resize', onScroll);
+		reduce.addEventListener?.('change', onScroll);
+		render();
+	}
+</script>
+
+<style>
+	.ef-story {
+		/* full-bleed night band, same technique as the hero */
+		background: #101c2c;
+		box-shadow: 0 0 0 100vmax #101c2c;
+		/* paint upward into Starlight's content gap so the band meets the hero with no seam */
+		clip-path: inset(-6rem -100vmax 0);
+		color: #e6edf5;
+		height: 520vh;
+		position: relative;
+		margin-block: 0 !important;
+	}
+	.ef-story__pin {
+		position: sticky;
+		top: var(--sl-nav-height, 4rem);
+		height: calc(100vh - var(--sl-nav-height, 4rem));
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+	}
+	.ef-story__inner {
+		width: 100%;
+		max-width: 80rem;
+		margin-inline: auto;
+		display: grid;
+		grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+		align-items: center;
+		gap: clamp(1.5rem, 4vw, 4rem);
+	}
+	.ef-story__copy {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1.5rem;
+		align-items: center;
+	}
+	.ef-story__rail {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.5rem;
+	}
+	.ef-story__rail li {
+		margin: 0;
+		width: 3px;
+		height: 3.25rem;
+		border-radius: 2px;
+		background: #22384f;
+		overflow: hidden;
+	}
+	.ef-story__rail span {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background: #3fc6e0;
+		transform-origin: top;
+		/* fills chapter i as --p passes through its quarter */
+		transform: scaleY(clamp(0, calc(var(--p, 0) * 4 - var(--i)), 1));
+	}
+	.ef-story__texts {
+		display: grid;
+	}
+	.ef-story__text {
+		grid-area: 1 / 1;
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.45s ease, transform 0.45s ease;
+		pointer-events: none;
+	}
+	.ef-story[data-ch='0'] .ef-story__text[data-i='0'],
+	.ef-story[data-ch='1'] .ef-story__text[data-i='1'],
+	.ef-story[data-ch='2'] .ef-story__text[data-i='2'],
+	.ef-story[data-ch='3'] .ef-story__text[data-i='3'] {
+		opacity: 1;
+		transform: none;
+		pointer-events: auto;
+	}
+	.ef-story__text h2 {
+		margin: 0;
+		font-size: clamp(2rem, 1.2rem + 2.6vw, 3.5rem);
+		line-height: 1.02;
+		font-weight: 800;
+		letter-spacing: -0.035em;
+		color: #ffffff;
+		max-width: 13ch;
+	}
+	.ef-story__text p {
+		margin: 1.1rem 0 0;
+		font-size: 1.125rem;
+		line-height: 1.55;
+		color: #b9c7d6;
+		max-width: 30rem;
+	}
+
+	/* the diagram */
+	.ef-story__stage {
+		width: 100%;
+		height: auto;
+		max-height: calc(100vh - var(--sl-nav-height, 4rem) - 2rem);
+		overflow: visible;
+	}
+	.ef-c {
+		transition: opacity 0.45s ease, transform 0.45s ease;
+	}
+	.ef-story text {
+		text-anchor: middle;
+		fill: #e6edf5;
+		font-family: var(--sl-font);
+	}
+	.ef-story .ef-left {
+		text-anchor: start;
+	}
+	.ef-story .ef-mono {
+		font-family: var(--sl-font-mono);
+		font-size: 15px;
+	}
+	.ef-story .ef-dim {
+		fill: #8a9bb0;
+	}
+	.ef-story .ef-ok {
+		fill: #3fc6e0;
+	}
+	.ef-story .ef-no {
+		fill: #f2a93b;
+	}
+	.ef-story .ef-big {
+		font-size: 26px;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+	.ef-story .ef-label {
+		font-size: 17px;
+		font-weight: 600;
+	}
+	.ef-floor,
+	.ef-road {
+		stroke: #2a4560;
+		stroke-width: 2;
+	}
+	.ef-frame {
+		fill: none;
+		stroke: #3fc6e0;
+		stroke-width: 2.5;
+	}
+	.ef-panel {
+		fill: #172a40;
+		stroke: #2a4560;
+		stroke-width: 1.5;
+	}
+	.ef-chip rect,
+	.ef-chipbox {
+		fill: #0b1522;
+		stroke: #2a4560;
+	}
+	.ef-chipbox--bad {
+		stroke: #f2a93b;
+	}
+	.ef-arc {
+		fill: none;
+		stroke: #3fc6e0;
+		stroke-width: 2.5;
+		stroke-linecap: round;
+	}
+	.ef-packet {
+		fill: #3fc6e0;
+		filter: url(#ef-glow);
+	}
+	.ef-packet.ef-bad {
+		fill: #f2a93b;
+	}
+	.ef-ring {
+		fill: none;
+		stroke: #f2a93b;
+		stroke-width: 3;
+	}
+	.ef-hub {
+		fill: #0f2236;
+		stroke: #3fc6e0;
+		stroke-width: 2.5;
+	}
+	.ef-fw {
+		stroke: #556780;
+		stroke-width: 2;
+		stroke-dasharray: 8 8;
+	}
+	.ef-node {
+		fill: #172a40;
+		stroke: #2a4560;
+		stroke-width: 1.5;
+	}
+	.ef-link {
+		fill: none;
+		stroke: #3fc6e0;
+		stroke-width: 2.5;
+		opacity: 0.7;
+	}
+	.ef-post {
+		fill: #2a4560;
+	}
+	.ef-bar {
+		fill: #3fc6e0;
+		opacity: 0.35;
+	}
+	.ef-bar--shut {
+		fill: #f2a93b;
+		opacity: 1;
+	}
+	.ef-doc {
+		fill: #0b1522;
+		stroke: #2a4560;
+	}
+	.ef-doc--md {
+		stroke: #3fc6e0;
+		stroke-dasharray: 6 6;
+	}
+	.ef-line {
+		transform-box: fill-box;
+		transform-origin: left center;
+	}
+	.ef-line--noise {
+		fill: #556780;
+	}
+	.ef-line--content {
+		fill: #c3cfdc;
+		transition: fill 0.3s ease;
+	}
+	.ef-line--clean {
+		fill: #a8ecf8;
+	}
+	.ef-tokbg {
+		fill: #172a40;
+	}
+	.ef-tok {
+		fill: #3fc6e0;
+	}
+
+	@media (max-width: 50rem) {
+		.ef-story {
+			height: 460vh;
+		}
+		.ef-story__inner {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1rem;
+			padding-inline: 0.25rem;
+		}
+		.ef-story__stage {
+			order: -1;
+			max-height: 46vh;
+		}
+		.ef-story__copy {
+			gap: 1rem;
+		}
+		.ef-story__rail li {
+			height: 2.25rem;
+		}
+		.ef-story__text p {
+			font-size: 1rem;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.ef-story__text,
+		.ef-c {
+			transition: none;
+		}
+	}
+</style>
