@@ -82,6 +82,61 @@ const refusals = [
 		</dl>
 	</section>
 
+	<section class="ef-section" aria-labelledby="ef-arch-title">
+		<div class="ef-section__head">
+			<h2 id="ef-arch-title">Nothing at home faces the internet</h2>
+			<p>
+				A hub on Cloudflare Workers, a small VPS or one container takes requests from your
+				agents. Worker nodes on a Raspberry Pi, NAS or Home Assistant box connect out to it over
+				TLS WebSockets, so they work behind CGNAT without port forwarding.
+			</p>
+		</div>
+
+		<svg class="ef-arch" viewBox="0 0 760 250" role="img" aria-labelledby="ef-arch-desc">
+			<desc id="ef-arch-desc">
+				AI agents connect to the hub over MCP. Three worker nodes at home open outbound
+				WebSocket connections to the hub. No inbound connections reach the home network.
+			</desc>
+			<defs>
+				<marker id="ef-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+					<path d="M0 0L10 5L0 10z" fill="currentColor"></path>
+				</marker>
+			</defs>
+			<g class="ef-arch__box">
+				<rect x="10" y="95" width="170" height="60" rx="8"></rect>
+				<text x="95" y="122">Claude Code, Cursor</text>
+				<text x="95" y="141" class="ef-arch__sub">your agents</text>
+			</g>
+			<g class="ef-arch__box ef-arch__box--hub">
+				<rect x="295" y="80" width="170" height="90" rx="8"></rect>
+				<text x="380" y="118">Hub</text>
+				<text x="380" y="139" class="ef-arch__sub">MCP, queue and cache</text>
+			</g>
+			<path class="ef-arch__line" d="M180 125H291" marker-end="url(#ef-arrow)"></path>
+			<text x="236" y="114" class="ef-arch__label">MCP</text>
+
+			<rect class="ef-arch__home" x="560" y="10" width="190" height="230" rx="10"></rect>
+			<text x="655" y="34" class="ef-arch__label">your network</text>
+			{
+				[
+					{ y: 50, t: 'Raspberry Pi' },
+					{ y: 110, t: 'Home Assistant' },
+					{ y: 170, t: 'Docker on a NAS' },
+				].map((n) => (
+					<g class="ef-arch__box">
+						<rect x="580" y={n.y} width="150" height="44" rx="7" />
+						<text x="655" y={n.y + 27}>{n.t}</text>
+					</g>
+				))
+			}
+			<path class="ef-arch__line ef-arch__line--out" d="M580 72C520 72 520 110 469 115" marker-end="url(#ef-arrow)"></path>
+			<path class="ef-arch__line ef-arch__line--out" d="M580 132H469" marker-end="url(#ef-arrow)"></path>
+			<path class="ef-arch__line ef-arch__line--out" d="M580 192C520 192 520 150 469 145" marker-end="url(#ef-arrow)"></path>
+			<text x="655" y="232" class="ef-arch__label">outbound WSS only</text>
+		</svg>
+		<p class="ef-more"><a href="/concepts/architecture/">How the hub and workers fit together</a></p>
+	</section>
+
 	<section class="ef-section ef-section--split" aria-labelledby="ef-verify-title">
 		<div class="ef-section__head">
 			<h2 id="ef-verify-title">Check the release yourself</h2>
