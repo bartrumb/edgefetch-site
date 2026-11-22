@@ -4,7 +4,7 @@
   "info": {
     "title": "EdgeFetch Hub API",
     "summary": "Self-hosted web scraping, search, browser automation, and MCP coordinator for AI agents.",
-    "version": "2.6.2",
+    "version": "2.6.3",
     "description": "EdgeFetch Hub coordinates polite outbound-only Go worker nodes (HTTP/2, Headless Chromium, Poppler PDF/OCR, and 49+ keyless site adapters) with strict RFC 9309 robots.txt and Content-Signal compliance, D1 FTS5 hybrid search, R2 content-addressed artifacts, self-hosted OAuth 2.1 PKCE, and Streamable HTTP Model Context Protocol (`POST /mcp`).",
     "contact": {
       "name": "EdgeFetch",
