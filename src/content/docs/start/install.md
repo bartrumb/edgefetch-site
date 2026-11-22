@@ -24,6 +24,14 @@ Once installed, upgrade in place at any time with Ed25519 + SHA-256 verification
 edgefetch update
 ```
 
+## Homebrew (macOS & Linux)
+
+Install from the official [`bartrumb/homebrew-tap`](https://github.com/bartrumb/homebrew-tap) (`arm64` and `amd64` on macOS and Linux, SHA-256 pinned to the signed GitHub release):
+
+```bash
+brew install bartrumb/tap/edgefetch
+```
+
 ## go install
 
 Requires Go 1.24 or later. Note the `/v2` in the module path:

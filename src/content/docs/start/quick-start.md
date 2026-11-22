@@ -13,7 +13,8 @@ There are two ways to start. Pick the one that matches what you want.
 ## Option 1: Local binary for your MCP client
 
 ```bash
-go install github.com/bartrumb/edgefetch/v2/cmd/edgefetch@latest
+brew install bartrumb/tap/edgefetch
+# or with Go: go install github.com/bartrumb/edgefetch/v2/cmd/edgefetch@latest
 edgefetch init
 edgefetch doctor
 ```
