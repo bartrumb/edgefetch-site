@@ -53,7 +53,7 @@ Hugging Face model cards, OpenRouter model listings and the Internet Archive.
 
 ### Community and commerce
 
-Hacker News, Lobsters, Reddit, Bluesky, Mastodon, Discourse, DEV, MediaWiki sites, Shopify and WooCommerce stores,
+Hacker News, Lobsters, Reddit, Bluesky, Mastodon, Discourse, DEV, **Wikipedia & MediaWiki** (`mediawiki` — strips `[ ]`, Wikidata `Edit links`, `[edit]`, and `[n]` citation markers while keeping infobox tables, defaults to a 24h article cache, pairs with `search` `wikipedia: true` / `site:<lang>.wikipedia.org` for `Special:Search`-free title discovery, and enforces a 200-article/hour bulk guard pointing to Wikimedia Enterprise and `dumps.wikimedia.org`), Shopify and WooCommerce stores,
 and Open Food Facts.
 
 ## Missing a site?

@@ -4310,7 +4310,7 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query (1..500 characters). Supports site:domain.com filtering."
+            "description": "Search query (1..500 characters). Supports site:domain.com filtering (including site:<lang>.wikipedia.org or wikipedia=true for robots-compliant Wikipedia article discovery)."
           },
           "maxResults": {
             "type": "integer",
@@ -6576,7 +6576,7 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query (1..500 characters). Supports site:domain.com filtering."
+            "description": "Search query (1..500 characters). Supports site:domain.com filtering (including site:<lang>.wikipedia.org or wikipedia=true for robots-compliant Wikipedia article discovery)."
           },
           "maxResults": {
             "type": "integer",
