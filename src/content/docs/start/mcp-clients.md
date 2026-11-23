@@ -44,7 +44,7 @@ From `/admin` on your hub, each signed-in user can also connect external MCP ser
 The worker image can also run the `stdio` server:
 
 ```bash
-docker run -i --rm ghcr.io/bartrumb/edgefetch-agent:2.7.1 mcp
+docker run -i --rm ghcr.io/bartrumb/edgefetch-agent:2.7.7 mcp
 ```
 
 See the [tools reference](/reference/tools/) for what your agent can call.

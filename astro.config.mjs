@@ -31,6 +31,21 @@ export default defineConfig({
               { tag: 'meta', attrs: { property: 'og:image', content: 'https://edgefetch.dev/og.png' } },
               { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
               { tag: 'meta', attrs: { name: 'theme-color', content: '#101c2c' } },
+              {
+                  tag: 'script',
+                  attrs: { type: 'application/ld+json' },
+                  content: JSON.stringify({
+                      '@context': 'https://schema.org',
+                      '@type': 'SoftwareApplication',
+                      name: 'EdgeFetch',
+                      url: 'https://edgefetch.dev',
+                      applicationCategory: 'DeveloperApplication',
+                      operatingSystem: 'Linux, macOS, Windows, FreeBSD, Docker, Home Assistant OS',
+                      description:
+                          'Self-hosted polite web scraping, search, and federated MCP hub for AI agents with RFC 9309 robots.txt compliance and zero inbound ports.',
+                      codeRepository: 'https://github.com/bartrumb/edgefetch',
+                  }),
+              },
           ],
           sidebar: [
               {

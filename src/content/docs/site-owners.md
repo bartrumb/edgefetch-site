@@ -3,7 +3,7 @@ title: For website owners
 description: What the EdgeFetch user agent is, what it does, and how to block or contact it.
 ---
 
-If you saw `EdgeFetch` in your logs, here's what it is.
+If you saw `EdgeFetch` (for example `EdgeFetch/2.7 (bot@edgefetch.dev)`) in your logs, here's what it is.
 
 ## What it is
 

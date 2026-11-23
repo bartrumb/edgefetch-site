@@ -43,7 +43,7 @@ Protected `/v1/*`, `/v2/*`, `/fetch`, `/agents`, and `/mcp` endpoints accept eit
 | `GET /v1/mcp/registry` | `crawl:read` | Search Official MCP Registry + Glama (`?q=...&source=all&limit=20`) |
 | `GET /v1/hosts` | `crawl:read` | Per-host EWMA TTFB, polite pause windows, and `429` health |
 | `GET /v1/artifacts/{blobSha256}` | `crawl:read` | Stream or page stored R2 raw/Markdown artifacts (`?offset=&limit=`) |
-| `GET /agents` | `CALLER_TOKEN` | Connected outbound Go worker nodes (`LITE` vs `FAT`, arch, counters) |
+| `GET /agents` | `CALLER_TOKEN` | Connected outbound Go worker nodes (capabilities, sandbox posture, arch, counters) |
 
 ### Core `/v1/*` & coordinator endpoints
 

@@ -14,7 +14,7 @@ that instead. You get cleaner results in fewer requests, without any API keys.
 - **They fail open.** If a site changes its JSON or markup, the adapter returns nothing and EdgeFetch falls back to normal extraction, so the request still succeeds.
 - **They're keyless and MIT-licensed.** Built-in adapters only use public, free sources. For authenticated private APIs (GitHub repos, Linear, Notion, Jira), connect an MCP server in `/admin`'s **MCP Registry & Encrypted Connectors** vault instead.
 
-To see which adapter would handle a URL, call the `find_extractors` MCP tool, or list them all
+To see which adapter would handle a URL, call the `find_extractors` MCP tool or list them all
 with `GET /v1/extractors` (filter with `?category=jobs`).
 
 ## The catalog

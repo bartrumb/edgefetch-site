@@ -30,7 +30,7 @@ EdgeFetch has two parts: a **federated hub** that your agents talk to, and **wor
 ## A request, end to end
 
 1. Your agent calls a tool such as `scrape` with a URL.
-2. **Tier 1a — Connected MCP server:** If the caller has an enabled MCP connector matching that domain in their vault, the hub queries the MCP server directly over Streamable HTTP/SSE and marks the result `visibility: "private"`.
+2. **Tier 1a — Connected MCP server:** If the caller has an enabled MCP connector matching that domain in their vault (and opts into MCP routing), the hub queries the MCP server directly over Streamable HTTP/SSE and marks the result `visibility: "private"`.
 3. **Tier 1b — Declarative YAML adapter & outbound workers:** Otherwise, the hub checks its cache, `robots.txt` and per-host pacing, upgrades matching URLs via the 56 declarative YAML adapters (`compiled.json`), and dispatches the fetch to a healthy home worker node.
 4. The worker resolves the host, checks inside the dialer right before `connect()` that the IP is public, fetches the page and follows redirects one hop at a time, re-checking `robots.txt` and IP safety on each hop.
 5. **Tier 2 — Polite Cloudflare overflow:** Only if no worker is connected (or workers hit `429`), the Cloudflare Hub falls back to direct polite fetch while still enforcing `robots.txt` and `Content-Signal`.

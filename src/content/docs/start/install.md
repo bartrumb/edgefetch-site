@@ -51,11 +51,11 @@ without logging in.
 
 | Image | What it is |
 |---|---|
-| `ghcr.io/bartrumb/edgefetch-agent:2.7.1` | "Fat" worker: HTTP/2, headless Chromium, Poppler PDF |
-| `ghcr.io/bartrumb/edgefetch-agent:2.7.1-lite` | Distroless worker, about 15 MB of RAM, pure-Go PDF |
-| `ghcr.io/bartrumb/edgefetch:2.7.1` | All-in-one federated hub + worker + SQLite FTS5 |
+| `ghcr.io/bartrumb/edgefetch-agent:2.7.7` | Full worker: HTTP/2, headless Chromium, Poppler PDF |
+| `ghcr.io/bartrumb/edgefetch-agent:2.7.7-lite` | Distroless worker, about 15 MB of RAM, pure-Go PDF |
+| `ghcr.io/bartrumb/edgefetch:2.7.7` | All-in-one federated hub + worker + SQLite FTS5 |
 
-Pin an explicit version tag such as `2.7.1` in production instead of `latest`.
+Pin an explicit version tag such as `2.7.7` in production instead of `latest`.
 
 ## Home Assistant OS
 

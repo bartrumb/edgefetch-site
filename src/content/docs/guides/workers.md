@@ -52,13 +52,14 @@ docker run -d --name edgefetch-lite --restart=unless-stopped --read-only \
 
 Use the **Add to Home Assistant** button on [One-click deploys](/deploy/one-click/), install
 **EdgeFetch**, and set `hub_url`, `agent_token` and `site_id`. The add-on runs on `amd64` and
-`aarch64` with an AppArmor profile, and adds two safety settings of its own:
+`aarch64` with an AppArmor `enforce` profile (`65532:65532`, `no-new-privileges`, loopback SSRF `CONNECT` proxy), and adds safety settings of its own:
 
 | Option | Default | What it does |
 |---|---|---|
 | `pause_ms` | 3000 | The minimum gap between requests to one host. Callers can ask for slower, never faster |
 | `pause_jitter_ms` | 1500 | Random extra delay added to every request |
 | `allowed_hosts` | empty (all public HTTPS) | Optional list of domains this node may fetch |
+| `allow_no_sandbox_browser` | `false` | Opt in to `browser-v1` on Home Assistant OS (where Supervisor blocks nested Linux user namespaces); reports `browserSandbox: "off"` while keeping AppArmor, UID `65532`, and the loopback `CONNECT` proxy active |
 
 ## Homelab and NAS templates
 

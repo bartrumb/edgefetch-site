@@ -14,16 +14,12 @@ EdgeFetch fetches URLs and federated tool outputs on behalf of AI agents, which 
   connect time.
 - Blocked ranges include loopback, RFC 1918, CGNAT and Tailscale (`100.64.0.0/10`), link-local
   and cloud metadata (`169.254.0.0/16`), ULA, and IPv6 transition prefixes.
-- Redirects are followed manually, up to 5 hops, re-checking `robots.txt` and dial-time IP rules on every hop.
+- **Redirect & post-navigation `robots.txt` checks:** HTTP redirects are followed manually, up to 5 hops, re-checking `robots.txt`, `Content-Signal`, and dial-time IP rules on every hop. In Headless Chromium (`scrape` and multi-step `interact`), `robots.txt` is checked before navigation and **re-checked against the final post-action URL** (for example, halting if an action submits a search form to a `Disallow` path such as `/wiki/Special:Search`).
 
 ## Direct Pipe CDP, browser sandboxing & VLAN guidance
 
 - **Zero listening browser ports:** Headless Chromium communicates with the Go worker strictly over anonymous OS pipes (**Direct Pipe CDP**, `--remote-debugging-pipe` on Linux, macOS, and Windows via `CreateProcessW` FD 3/4 inheritance + Job Object kill-on-close) — Chromium opens **zero** TCP debugging sockets.
-- **OS process sandbox:** On Windows and macOS, Headless Chromium runs with its **native OS process
-  sandbox enabled** (`browserSandbox: "on"`). On Linux containers where `NO_NEW_PRIVS` or disabled
-  user namespaces prevent Chromium's namespace sandbox, EdgeFetch probes sandbox startup once,
-  falls back only when required, and reports `browserSandbox: "on" | "off"` in `list_agents`
-  (with optional `EDGEFETCH_REQUIRE_BROWSER_SANDBOX=1` hard enforcement).
+- **OS process sandbox (`browserSandbox: "on" | "off"`):** On Windows, macOS, and Docker containers running [`deploy/seccomp/chromium-sandbox.json`](https://github.com/bartrumb/edgefetch/blob/main/deploy/seccomp/chromium-sandbox.json), Headless Chromium runs with its **native OS process sandbox enabled** (`browserSandbox: "on"`). On **Home Assistant OS**, Supervisor container policies block nested Linux user namespaces (`CLONE_NEWUSER`), so the add-on defaults to `allow_no_sandbox_browser: false` (fail-closed, no `browser-v1`). When an operator explicitly opts in via `allow_no_sandbox_browser: true`, Chromium launches with `--no-sandbox` inside the add-on container and transparently reports `browserSandbox: "off"` in `list_agents` while **outer container and network confinement remain enforced** (AppArmor `enforce` profile, non-root `65532:65532`, `PR_SET_NO_NEW_PRIVS=1`, `PR_SET_DUMPABLE=0`, Direct Pipe CDP, and the loopback SSRF `CONNECT` proxy). Setting `EDGEFETCH_REQUIRE_BROWSER_SANDBOX=1` unconditionally forbids `--no-sandbox`.
 - **Subresource proxy, WebRTC guard & initiator-proven headers:** Every browser subresource is forced through an in-process SSRF-checked loopback proxy (`--host-resolver-rules="MAP * ~NOTFOUND , EXCLUDE 127.0.0.1"`, `--webrtc-ip-handling-policy=disable_non_proxied_udp`). Caller custom headers are attached via CDP `Fetch.requestPaused` strictly to the initiator-proven initial navigation request and never leak to subresources or cross-origin redirects.
 - **Home network isolation:** Place home `browser-v1` / `pdf-v1` nodes on an **isolated VLAN or guest network** (and a standard non-admin account on Windows). Child processes run with a scrubbed environment, `O_NOFOLLOW`-verified `/data` permissions, and `PR_SET_DUMPABLE=0`.
 

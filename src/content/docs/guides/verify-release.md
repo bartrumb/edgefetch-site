@@ -23,9 +23,9 @@ edgefetch update           # verify Ed25519 + SHA-256 and upgrade in place
 ### 1. Download
 
 ```bash
-gh release download v2.7.1 --repo bartrumb/edgefetch \
+gh release download v2.7.7 --repo bartrumb/edgefetch \
   --pattern 'checksums.txt*' \
-  --pattern 'edgefetch_2.7.1_linux_amd64.tar.gz'
+  --pattern 'edgefetch_2.7.7_linux_amd64.tar.gz'
 ```
 
 ### 2. Check the key and Ed25519 signature
@@ -48,14 +48,14 @@ sha256sum --ignore-missing -c checksums.txt
 ### 4. Check GitHub SLSA provenance
 
 ```bash
-gh attestation verify edgefetch_2.7.1_linux_amd64.tar.gz --repo bartrumb/edgefetch
+gh attestation verify edgefetch_2.7.7_linux_amd64.tar.gz --repo bartrumb/edgefetch
 ```
 
 This confirms the archive was built by the repository's GitHub Actions release workflow from the
-immutable `v2.7.1` tag.
+immutable `v2.7.7` tag.
 
 Container images carry SLSA attestations too:
 
 ```bash
-gh attestation verify oci://ghcr.io/bartrumb/edgefetch-agent:2.7.1 --repo bartrumb/edgefetch
+gh attestation verify oci://ghcr.io/bartrumb/edgefetch-agent:2.7.7 --repo bartrumb/edgefetch
 ```
